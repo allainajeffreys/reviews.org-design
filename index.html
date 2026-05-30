@@ -1,11 +1,513 @@
-<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews.org · Style Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== assets/tokens.css ===== */
+/* ============================================================
+   Reviews.org — DESIGN.md token layer
+   Generated 1:1 from the YAML frontmatter of REV_DESIGN.md.
+   This file IS the bridge: edit the .md, mirror it here.
+   ============================================================ */
 
-<template id="__bundler_thumbnail" data-bg-color="#0C113C">
-  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1200" height="800" fill="#0C113C"/>
-    <path fill-rule="evenodd" clip-rule="evenodd" transform="translate(490 330) scale(3.5)" d="M53.0344 50.5604C58.0717 45.1894 61.1509 38.0111 61.1509 30.1222C61.1509 13.484 47.4632 0 30.5737 0C13.6877 0 0 13.6468 0 30.2849C0 47.4893 13.5562 59.4383 34.0953 59.4383H61.5489L53.0131 51.5616H34.0953C18.1431 51.5616 9.62413 41.8584 9.62413 30.7663C9.62413 19.3644 19.0039 9.80646 30.5737 9.80646C42.147 9.80646 51.5232 18.8821 51.5232 30.2841C51.5232 34.835 50.0281 38.9607 47.4979 42.3686C47.0963 42.9077 46.4886 44.1584 47.5698 45.22C48.6501 46.2825 53.0344 50.5604 53.0344 50.5604Z" fill="#D84727"/>
-  </svg>
-</template>
+:root {
+  /* ---- PRIMITIVES · brand blue ---- */
+  --blue-100:#EBF2FD; --blue-200:#DAE7FC; --blue-300:#BDD4F9; --blue-400:#8BB4F6;
+  --blue-500:#568EF5; --blue-600:#315FE7; --blue-700:#223EA2; --blue-800:#172469; --blue-900:#0C113C;
+
+  /* ---- PRIMITIVES · accent red ---- */
+  --ared-100:#FBEFEB; --ared-200:#F7DAD4; --ared-300:#EFB5A9; --ared-400:#E8917D;
+  --ared-500:#E06C52; --ared-600:#D84727; --ared-700:#AD391F; --ared-800:#822B17; --ared-900:#561C10;
+
+  /* ---- PRIMITIVES · gray ---- */
+  --gray-050:#F9F9FA; --gray-100:#F3F3F4; --gray-150:#E8E7E9; --gray-200:#DCDBDE;
+  --gray-250:#C5C3C8; --gray-300:#AEAAB1; --gray-350:#8B8690; --gray-400:#615E65;
+  --gray-450:#464348; --gray-500:#2A282B; --gray-550:#0E0D0E;
+
+  /* ---- PRIMITIVES · white ---- */
+  --white-1000:#FFFFFF;
+
+  /* ---- PRIMITIVES · red ---- */
+  --red-100:#FFF2F0; --red-200:#FFDCD8; --red-300:#FFA79D; --red-400:#FF7B70;
+  --red-500:#FD413D; --red-600:#E11420; --red-700:#BE0014; --red-800:#8D000C; --red-900:#5D0005;
+
+  /* ---- PRIMITIVES · green ---- */
+  --green-100:#E9FBF4; --green-200:#BDF2DD; --green-300:#91E9C6; --green-400:#64E0AF;
+  --green-500:#22D38C; --green-600:#1BA970; --green-700:#147F54; --green-800:#0E5438; --green-900:#072A1C;
+
+  /* ---- PRIMITIVES · yellow ---- */
+  --yellow-100:#FEF4E8; --yellow-200:#FEEFDD; --yellow-300:#FDDFBB; --yellow-400:#FBCA8E;
+  --yellow-500:#FEB24D; --yellow-600:#F7941D; --yellow-700:#C67617; --yellow-800:#7C4A0F; --yellow-900:#4A2C09;
+
+  /* ---- SEMANTIC · text ---- */
+  --text-heading:#0E0D0E;
+  --text-heading-on-dark:#FFFFFF;
+  --text-body:#464348;
+  --text-body-on-dark:#FFFFFF;
+  --text-body-alt:#615E65;
+  --text-body-alt-on-dark:rgba(255,255,255,0.95);
+  --text-muted:#8B8690;
+  --text-muted-on-dark:rgba(255,255,255,0.9);
+  --text-link:#D84727;
+  --text-link-hover:#822B17;
+  --text-link-on-dark:#EFB5A9;
+  --text-link-on-dark-hover:#E8917D;
+  --text-error:#E11420;
+  --text-error-on-dark:#FFDCD8;
+  --text-success:#1BA970;
+  --text-success-on-dark:#E9FBF4;
+
+  /* ---- SEMANTIC · background ---- */
+  --bg-default:#FFFFFF;
+  --bg-default-active:#EBF2FD;
+  --bg-default-hover:#BDD4F9;
+  --bg-brand:#0C113C;
+  --bg-brand-light:#DAE7FC;
+  --bg-brand-dark:#0C113C;
+  --bg-strong:#2A282B;
+  --bg-muted:#F9F9FA;
+  --bg-success:#1BA970;
+  --bg-error:#E11420;
+
+  /* ---- SEMANTIC · button ---- */
+  --btn-primary:#D84727;
+  --btn-primary-hover:#822B17;
+  --btn-primary-active:#561C10;
+  --btn-secondary:#FFFFFF;
+  --btn-secondary-hover:#FBEFEB;
+
+  /* ---- SEMANTIC · border ---- */
+  --border-default:#DCDBDE;
+  --border-default-active:#568EF5;
+  --border-brand:#0C113C;
+  --border-brand-light:#315FE7;
+  --border-brand-dark:#0C113C;
+  --border-muted:#E8E7E9;
+  --border-strong:#464348;
+  --border-success:#22D38C;
+  --border-error:#E11420;
+  --border-btn-secondary:#D84727;
+  --border-btn-secondary-hover:#AD391F;
+
+  /* ---- TYPOGRAPHY ---- */
+  --font-heading:"Work Sans", system-ui, sans-serif;
+  --font-body:"Rubik", system-ui, sans-serif;
+  --font-creative:"Caveat", cursive;
+  --w-regular:400; --w-medium:500; --w-semibold:600; --w-bold:700;
+
+  /* ---- RADIUS ---- */
+  --radius-none:0px;
+  --radius-inner:4px;
+  --radius-outer:10px;
+  --radius-outer-lg:16px;
+  --radius-full:384px;
+
+  /* ---- BORDER WIDTH ---- */
+  --bw-subtle:1px;
+  --bw-default:2px;
+  --bw-emphasis:4px;
+
+  /* ---- SHADOWS ---- */
+  --shadow-flat:none;
+  --shadow-low:0px -1px 2px rgba(0,0,0,0.04), 0px 2px 4px rgba(0,0,0,0.16);
+  --shadow-medium:0px -1px 4px rgba(0,0,0,0.04), 0px 4px 8px rgba(0,0,0,0.16);
+  --shadow-high:0px -1px 6px rgba(0,0,0,0.04), 0px 12px 24px rgba(0,0,0,0.24);
+  --shadow-xhigh:0px -1px 8px rgba(0,0,0,0.04), 0px 24px 32px rgba(0,0,0,0.56);
+
+  /* ---- EFFECT · focus ring ---- */
+  --focus-brand:-2px -2px 0 0 #D84727, 2px 2px 0 0 #D84727, -2px 2px 0 0 #D84727, 2px -2px 0 0 #D84727;
+}
+
+/* ===== assets/styleguide.css ===== */
+/* ============================================================
+   Reviews.org Style Guide — page chrome & specimen styling
+   ============================================================ */
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:96px;}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--text-body);
+  background:var(--bg-default);
+  font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,h5{font-family:var(--font-heading);color:var(--text-heading);line-height:1.15;margin:0;font-weight:var(--w-bold);}
+p{margin:0;text-wrap:pretty;}
+a{color:var(--text-link);text-decoration:none;}
+a:hover{color:var(--text-link-hover);text-decoration:underline;}
+code,.mono{font-family:"Fira Code",ui-monospace,monospace;font-size:0.84em;}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:var(--bg-brand);
+  color:var(--text-heading-on-dark);
+  display:flex;align-items:center;gap:20px;
+  padding:0 28px;height:72px;
+  border-bottom:2px solid #1b2350;
+}
+.topbar .brand{display:flex;align-items:center;gap:12px;}
+.topbar .brand img{width:30px;height:auto;display:block;}
+.topbar .brand img.logo-lockup{width:auto;height:30px;}
+.topbar .wordmark{font-family:var(--font-heading);font-weight:800;font-size:22px;letter-spacing:-0.01em;}
+.topbar .divider{width:1px;height:30px;background:rgba(255,255,255,0.22);}
+.topbar .kicker{font-family:var(--font-heading);font-weight:600;font-size:15px;color:rgba(255,255,255,0.92);white-space:nowrap;}
+.topbar .spacer{flex:1;}
+
+/* ---- nav search ---- */
+.nav-search{position:relative;width:268px;}
+.nav-search .si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.6);pointer-events:none;}
+.nav-search input{
+  width:100%;height:40px;padding:0 14px 0 36px;
+  font-family:var(--font-body);font-size:14px;color:#fff;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);border-radius:var(--radius-inner);
+  transition:background .15s,border-color .15s;
+}
+.nav-search input::placeholder{color:rgba(255,255,255,0.55);}
+.nav-search input:focus{outline:none;background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.45);}
+.search-results{
+  position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:60;
+  background:#fff;border:1px solid var(--border-default);border-radius:var(--radius-outer);
+  box-shadow:var(--shadow-high);overflow:hidden;padding:6px;display:none;max-height:60vh;overflow-y:auto;
+}
+.search-results.open{display:block;}
+.search-results .sr{
+  display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:var(--radius-inner);
+  cursor:pointer;text-align:left;width:100%;border:none;background:transparent;font-family:var(--font-body);
+}
+.search-results .sr:hover,.search-results .sr.active{background:var(--ared-100);}
+.search-results .sr .t{font-family:var(--font-heading);font-weight:600;font-size:14px;color:var(--text-heading);}
+.search-results .sr .g{font-size:11px;font-family:var(--font-heading);font-weight:700;letter-spacing:0.05em;
+  text-transform:uppercase;color:var(--text-muted);margin-left:auto;flex-shrink:0;}
+.search-results .sr .t mark{background:var(--yellow-300);color:inherit;border-radius:2px;padding:0 1px;}
+.search-results .none{padding:14px 12px;font-size:13.5px;color:var(--text-muted);}
+.search-results .none b{color:var(--text-heading);font-family:var(--font-heading);}
+.fmt-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-heading);font-weight:600;font-size:12px;
+  letter-spacing:0.04em;text-transform:uppercase;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
+  padding:6px 12px;border-radius:var(--radius-full);
+  color:rgba(255,255,255,0.92);
+}
+.fmt-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green-500);}
+.topbar button{
+  font-family:var(--font-body);font-weight:600;font-size:14px;
+  border-radius:var(--radius-inner);padding:9px 16px;cursor:pointer;
+  border:none;transition:background .15s,color .15s,border-color .15s;
+}
+.btn-ghost-light{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.3)!important;}
+.btn-ghost-light:hover{background:rgba(255,255,255,0.12);}
+.btn-red{background:var(--btn-primary);color:#fff;}
+.btn-red:hover{background:var(--btn-primary-hover);}
+
+/* ---------- layout ---------- */
+.layout{display:grid;grid-template-columns:248px 1fr;max-width:1440px;margin:0 auto;}
+.sidenav{
+  position:sticky;top:72px;align-self:start;height:calc(100vh - 72px);
+  overflow-y:auto;padding:32px 20px 60px;
+  border-right:1px solid var(--border-default);
+}
+.sidenav .grp{font-family:var(--font-heading);font-weight:700;font-size:12px;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--text-muted);margin:22px 0 8px;}
+.sidenav .grp:first-child{margin-top:0;}
+.sidenav a{display:block;color:var(--text-body);font-size:14.5px;padding:6px 10px;border-radius:var(--radius-inner);}
+.sidenav a:hover{background:var(--bg-muted);text-decoration:none;color:var(--text-heading);}
+.sidenav a.active{background:var(--ared-100);color:var(--btn-primary);font-weight:600;}
+
+.content{padding:48px 56px 120px;min-width:0;}
+section{scroll-margin-top:96px;padding-bottom:56px;margin-bottom:56px;border-bottom:1px solid var(--border-muted);}
+section:last-child{border-bottom:none;}
+.eyebrow{font-family:var(--font-heading);font-weight:700;font-size:12px;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--btn-primary);margin-bottom:10px;}
+.sec-title{font-size:34px;font-weight:800;letter-spacing:-0.02em;margin-bottom:6px;}
+.sec-lead{font-size:18px;color:var(--text-body-alt);max-width:68ch;margin-bottom:30px;}
+.sub-title{font-size:20px;font-weight:700;margin:38px 0 16px;}
+.note{font-size:14px;color:var(--text-muted);}
+
+/* ---------- hero ---------- */
+.hero{
+  background:var(--bg-brand);color:#fff;border-radius:var(--radius-outer-lg);
+  padding:52px 48px;margin-bottom:8px;position:relative;overflow:hidden;
+}
+.hero h1{color:#fff;font-size:46px;font-weight:800;letter-spacing:-0.025em;max-width:18ch;}
+.hero .lead{color:rgba(255,255,255,0.85);font-size:19px;max-width:60ch;margin-top:18px;}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.hero .pill{font-family:var(--font-heading);font-weight:600;font-size:13px;
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
+  padding:7px 14px;border-radius:var(--radius-full);}
+.hero .markwm{position:absolute;right:-30px;bottom:-40px;width:220px;opacity:0.08;}
+
+.dual{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px;}
+.dual .card{border:1px solid var(--border-default);border-radius:var(--radius-outer);padding:24px;background:#fff;}
+.dual .card h4{font-size:16px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.dual .card .tag{font-size:11px;font-family:var(--font-heading);font-weight:700;letter-spacing:0.05em;
+  text-transform:uppercase;padding:3px 8px;border-radius:var(--radius-inner);}
+.dual .card p{font-size:14.5px;color:var(--text-body-alt);}
+
+/* ---------- voice dials ---------- */
+.dials{display:grid;gap:18px;}
+.dial{border:1px solid var(--border-default);border-radius:var(--radius-outer);padding:22px 24px;background:#fff;}
+.dial .row{display:flex;justify-content:space-between;font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--text-heading);}
+.dial .row .l,.dial .row .r{color:var(--text-muted);font-weight:600;}
+.dial .track{height:8px;background:var(--gray-150);border-radius:var(--radius-full);margin:14px 0 12px;position:relative;}
+.dial .fill{position:absolute;top:50%;transform:translateY(-50%);height:14px;width:14px;border-radius:50%;
+  background:var(--btn-primary);box-shadow:0 0 0 4px var(--ared-100);}
+.dial p{font-size:14px;color:var(--text-body-alt);}
+
+/* ---------- scannability cards ---------- */
+.scan-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.scan-card{border:1px solid var(--border-default);border-left:4px solid var(--btn-primary);
+  border-radius:var(--radius-outer);padding:20px 22px;background:#fff;}
+.scan-card h4{font-size:15px;margin-bottom:6px;}
+.scan-card .big{font-family:var(--font-heading);font-weight:800;font-size:28px;color:var(--btn-primary);letter-spacing:-0.02em;}
+.scan-card p{font-size:14px;color:var(--text-body-alt);margin-top:4px;}
+
+/* ---------- color ---------- */
+.ramp{margin-bottom:24px;}
+.ramp h4{font-size:15px;margin-bottom:10px;}
+.ramp-row{display:grid;grid-template-columns:repeat(9,1fr);border-radius:var(--radius-outer);overflow:hidden;border:1px solid var(--border-default);}
+.ramp-row.g11{grid-template-columns:repeat(11,1fr);}
+.swatch{aspect-ratio:1/1.15;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;cursor:pointer;position:relative;}
+.swatch .step{font-family:var(--font-heading);font-weight:700;font-size:12px;}
+.swatch .hex{font-family:"Fira Code",monospace;font-size:9.5px;opacity:0.85;}
+.swatch:hover::after{content:"copied ↗";position:absolute;top:6px;left:8px;font-size:9px;font-weight:700;font-family:var(--font-heading);opacity:0;}
+.swatch.copied::after{content:"copied!";opacity:1;}
+
+.roles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.role{display:flex;align-items:center;gap:12px;border:1px solid var(--border-default);border-radius:var(--radius-inner);padding:10px 12px;cursor:pointer;position:relative;transition:border-color .15s,background .15s;}
+.role .chip{width:34px;height:34px;border-radius:6px;border:1px solid rgba(0,0,0,0.08);flex-shrink:0;}
+.role .name{font-family:"Fira Code",monospace;font-size:12.5px;color:var(--text-heading);}
+.role .val{font-family:"Fira Code",monospace;font-size:11px;color:var(--text-muted);margin-top:1px;}
+.role:hover{background:var(--bg-muted);}
+.role::after{content:"Copied!";position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  font-family:var(--font-heading);font-weight:700;font-size:11px;letter-spacing:0.04em;
+  color:var(--green-700);background:var(--green-100);padding:4px 9px;border-radius:var(--radius-full);
+  opacity:0;transition:opacity .15s;pointer-events:none;}
+.role.copied{border-color:var(--green-500);background:var(--green-100);}
+.role.copied::after{opacity:1;}
+
+/* ---------- type ---------- */
+.font-card{border:1px solid var(--border-default);border-radius:var(--radius-outer);padding:26px 28px;margin-bottom:14px;}
+.font-card .font-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px;}
+.font-card .label{font-family:var(--font-heading);font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);}
+.font-card .role-tag{font-size:13px;color:var(--text-body-alt);margin-bottom:0;margin-top:3px;}
+.gf-link{display:inline-flex;align-items:center;gap:6px;flex-shrink:0;white-space:nowrap;
+  font-family:var(--font-heading);font-weight:600;font-size:13px;color:var(--text-link);
+  border:1px solid var(--border-default);border-radius:var(--radius-full);padding:7px 14px;transition:all .15s;}
+.gf-link:hover{background:var(--ared-100);border-color:var(--ared-300);color:var(--text-link-hover);text-decoration:none;}
+.font-card .specimen{font-size:46px;line-height:1.1;letter-spacing:-0.01em;color:var(--text-heading);}
+.font-card .glyphs{font-size:18px;color:var(--text-body-alt);margin-top:10px;}
+
+.type-scale .ts-row{display:flex;align-items:baseline;gap:20px;padding:12px 0;border-bottom:1px solid var(--border-muted);}
+.type-scale .ts-row:last-child{border-bottom:none;}
+.type-scale .ts-meta{width:120px;flex-shrink:0;font-family:"Fira Code",monospace;font-size:12px;color:var(--text-muted);}
+.type-scale .ts-sample{color:var(--text-heading);font-family:var(--font-heading);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+.weights{display:flex;flex-wrap:wrap;gap:12px;}
+.weights .w{border:1px solid var(--border-default);border-radius:var(--radius-inner);padding:14px 18px;min-width:120px;}
+.weights .w .n{font-family:var(--font-heading);font-size:26px;color:var(--text-heading);}
+.weights .w .l{font-size:12px;color:var(--text-muted);font-family:"Fira Code",monospace;margin-top:4px;}
+
+/* ---------- spacing ---------- */
+.space-row{display:flex;align-items:center;gap:16px;padding:5px 0;}
+.space-row .lab{width:120px;flex-shrink:0;font-family:"Fira Code",monospace;font-size:12px;color:var(--text-muted);}
+.space-row .bar{height:16px;background:var(--btn-primary);border-radius:2px;}
+
+/* ---------- radii / shadows / border ---------- */
+.tiles{display:flex;flex-wrap:wrap;gap:18px;}
+.tile{display:flex;flex-direction:column;gap:10px;align-items:center;}
+.tile .box{width:120px;height:96px;background:#fff;border:1px solid var(--border-default);}
+.tile .box.brand{background:var(--bg-brand);border:none;}
+.tile .cap{font-family:"Fira Code",monospace;font-size:11.5px;color:var(--text-muted);text-align:center;}
+.tile .cap b{display:block;font-family:var(--font-heading);font-size:13px;color:var(--text-heading);font-weight:700;margin-bottom:2px;}
+
+/* ---------- component blocks ---------- */
+.demo{border:1px solid var(--border-default);border-radius:var(--radius-outer);overflow:hidden;margin-bottom:18px;}
+.demo .stage{padding:34px;background:var(--bg-muted);display:flex;flex-wrap:wrap;gap:16px;align-items:center;}
+.demo .stage.dark{background:var(--bg-brand);}
+.demo .stage.col{flex-direction:column;align-items:stretch;}
+.state-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+.state-table th,.state-table td{text-align:left;padding:10px 14px;border-top:1px solid var(--border-muted);vertical-align:top;}
+.state-table th{font-family:var(--font-heading);font-weight:700;color:var(--text-heading);background:#fff;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;border-top:none;}
+.state-table td:first-child{font-family:var(--font-heading);font-weight:700;color:var(--text-heading);white-space:nowrap;}
+.state-table .tok{font-family:"Fira Code",monospace;font-size:11.5px;color:var(--text-link);}
+.state-table .sw{display:inline-block;width:13px;height:13px;border-radius:3px;border:1px solid rgba(0,0,0,0.1);vertical-align:-2px;margin-right:6px;}
+
+/* live components --------------------------------------------- */
+.rev-btn{font-family:var(--font-body);font-weight:600;font-size:16px;line-height:1;
+  padding:12px 16px;border-radius:var(--radius-inner);cursor:pointer;
+  border:2px solid transparent;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
+.rev-btn:focus-visible{outline:none;box-shadow:var(--focus-brand);}
+.btn-primary{background:var(--btn-primary);color:#fff;}
+.btn-primary:hover{background:var(--btn-primary-hover);}
+.btn-primary:active{background:var(--btn-primary-active);}
+.btn-primary:disabled{background:var(--gray-400);cursor:not-allowed;}
+.btn-secondary{background:var(--btn-secondary);color:var(--btn-primary);border-color:var(--border-btn-secondary);}
+.btn-secondary:hover{background:var(--btn-secondary);border-color:var(--border-btn-secondary-hover);color:var(--text-link-hover);}
+.btn-secondary:active{background:var(--btn-secondary-hover);border-color:var(--border-btn-secondary-hover);color:var(--text-link-hover);}
+.btn-secondary:disabled{background:#fff;border-color:var(--gray-400);color:var(--gray-400);cursor:not-allowed;}
+.btn-text{background:transparent;color:var(--text-link);}
+.btn-text:hover{color:var(--text-link-hover);}
+.btn-text:active{color:var(--ared-900);}
+.btn-text:disabled{color:var(--gray-400);cursor:not-allowed;}
+
+/* accordion */
+.rev-acc{width:100%;max-width:560px;}
+.rev-acc .item{border-bottom:1px solid var(--border-muted);}
+.rev-acc .hd{width:100%;background:transparent;border:none;cursor:pointer;
+  display:flex;align-items:center;gap:10px;padding:16px 4px;font-family:var(--font-body);
+  font-weight:600;font-size:16px;color:var(--text-heading);text-align:left;}
+.rev-acc .hd:hover{color:var(--text-link);}
+.rev-acc .hd .chev{transition:transform .15s;color:currentColor;}
+.rev-acc .item.open .hd .chev{transform:rotate(180deg);}
+.rev-acc .bd{max-height:0;overflow:hidden;transition:max-height .2s ease;color:var(--text-body);font-size:15px;}
+.rev-acc .item.open .bd{max-height:200px;}
+.rev-acc .bd .inner{padding:0 4px 16px;}
+
+/* dropdown */
+.rev-dd{font-family:var(--font-body);font-size:15px;color:var(--text-body);
+  background:#fff;border:1px solid var(--border-default);border-radius:var(--radius-inner);
+  padding:11px 14px;min-width:220px;}
+.rev-dd:focus-visible{outline:none;box-shadow:var(--focus-brand);border-color:var(--border-default);}
+.rev-dd.err{border-color:var(--border-error);}
+.dd-err-label{color:var(--text-error);font-size:13px;margin-top:6px;}
+
+/* filter chip */
+.rev-chip{font-family:var(--font-body);font-size:15px;color:var(--text-heading);
+  background:var(--bg-default);border:2px solid var(--border-brand);border-radius:var(--radius-outer);
+  padding:8px 14px;cursor:pointer;transition:all .15s;}
+.rev-chip:hover{border-color:var(--border-default-active);}
+.rev-chip:focus-visible{outline:none;border-color:var(--blue-600);}
+.rev-chip.sel{background:var(--bg-default-active);border-color:var(--border-default-active);color:var(--text-heading);}
+
+/* label header */
+.rev-label{width:300px;border-radius:var(--radius-outer) var(--radius-outer) 0 0;padding:18px 22px;
+  font-family:var(--font-body);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px;}
+.rev-label.def{background:var(--bg-muted);color:var(--text-body);border:1px solid var(--border-default);border-bottom:none;}
+.rev-label.hi{background:var(--bg-brand-dark);color:var(--text-body-on-dark);}
+.label-body{width:300px;border:1px solid var(--border-default);border-top:none;border-radius:0 0 var(--radius-outer) var(--radius-outer);
+  padding:16px 22px;font-size:14px;color:var(--text-body-alt);background:#fff;}
+
+/* separators */
+.sep{height:1px;width:100%;}
+.sep.muted{background:var(--border-muted);}
+.sep.def{background:var(--border-default);}
+
+/* lists */
+.rev-list{list-style:none;padding:0;margin:0;max-width:480px;width:100%;}
+.rev-list li{display:flex;gap:10px;padding:9px 0;font-size:15px;color:var(--text-body);align-items:flex-start;}
+.rev-list.divided li{border-bottom:1px solid var(--border-muted);}
+.rev-list .ic{flex-shrink:0;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;margin-top:1px;}
+.rev-list .ic.pro{background:var(--green-600);}
+.rev-list .ic.con{background:var(--red-600);}
+.rev-list.spec li{justify-content:space-between;}
+.rev-list.spec .k{color:var(--text-body);}
+.rev-list.spec .v{color:var(--text-heading);font-weight:700;}
+
+/* callout grid */
+.callout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%;}
+.callout{border-radius:var(--radius-outer);padding:26px 22px;text-align:center;}
+.callout.outline{border:2px solid var(--border-default);background:#fff;}
+.callout.fill{background:var(--bg-brand-light);}
+.callout.shadow{box-shadow:var(--shadow-medium);border:none;background:#fff;}
+.callout .ci{width:64px;height:64px;border-radius:50%;background:var(--ared-100);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--btn-primary);}
+.callout h4{font-family:var(--font-heading);font-size:19px;margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text-body-alt);text-align:left;}
+.callout a{display:block;margin-top:12px;font-size:14px;font-weight:600;}
+
+/* ---------- source / AI panel ---------- */
+.src-wrap{border:1px solid var(--border-default);border-radius:var(--radius-outer);overflow:hidden;}
+.src-head{display:flex;align-items:center;gap:12px;background:var(--bg-strong);color:#fff;padding:14px 18px;}
+.src-head .fn{font-family:"Fira Code",monospace;font-size:13px;}
+.src-head .spacer{flex:1;}
+.src-head button{font-family:var(--font-body);font-weight:600;font-size:13px;border-radius:var(--radius-inner);
+  padding:7px 13px;cursor:pointer;border:1px solid rgba(255,255,255,0.25);background:transparent;color:#fff;transition:background .15s;}
+.src-head button:hover{background:rgba(255,255,255,0.12);}
+.src-body{margin:0;background:#0E0D0E;color:#e6e6e6;padding:20px;overflow:auto;max-height:520px;
+  font-family:"Fira Code",monospace;font-size:12.5px;line-height:1.6;white-space:pre;}
+.src-body .ln{color:#8B8690;}
+
+.lint{display:flex;align-items:flex-start;gap:14px;background:var(--bg-muted);border:1px solid var(--border-default);
+  border-radius:var(--radius-outer);padding:18px 20px;margin-top:18px;}
+.lint .ok{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--green-600);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.lint code{background:#0E0D0E;color:#91E9C6;padding:2px 7px;border-radius:4px;}
+
+/* ---------- logo / brand ---------- */
+.logo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.logo-grid.icons{grid-template-columns:repeat(3,1fr);}
+.logo-card{border:1px solid var(--border-default);border-radius:var(--radius-outer);overflow:hidden;background:#fff;}
+.logo-stage{height:150px;display:flex;align-items:center;justify-content:center;padding:24px;}
+.logo-stage.light{background:#fff;}
+.logo-stage.muted{background:var(--bg-muted);}
+.logo-stage.navy{background:var(--bg-brand);}
+.logo-stage.checker{background-color:#fff;background-image:linear-gradient(45deg,#eceaef 25%,transparent 25%),linear-gradient(-45deg,#eceaef 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#eceaef 75%),linear-gradient(-45deg,transparent 75%,#eceaef 75%);background-size:18px 18px;background-position:0 0,0 9px,9px -9px,-9px 0;}
+.logo-stage img.wm{height:34px;width:auto;}
+.logo-stage img.ic{height:74px;width:auto;}
+.logo-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px 16px;border-top:1px solid var(--border-muted);}
+.logo-meta .nm{font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--text-heading);}
+.logo-meta .use{font-size:12.5px;color:var(--text-muted);margin-top:2px;}
+.logo-meta .fn{font-family:"Fira Code",monospace;font-size:11px;color:var(--text-link);background:var(--ared-100);padding:3px 9px;border-radius:var(--radius-inner);white-space:nowrap;flex-shrink:0;cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-weight:500;}
+.logo-meta .fn-row{display:flex;gap:7px;flex-shrink:0;}
+.logo-meta .fn::before{content:"↓";font-family:var(--font-heading);font-weight:700;font-size:12px;line-height:1;}
+.logo-meta .fn:hover{background:var(--ared-200);}
+.logo-rules{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;}
+.logo-rule{border:1px solid var(--border-default);border-radius:var(--radius-outer);padding:18px 20px;}
+.logo-rule.do{border-left:4px solid var(--green-600);}
+.logo-rule.dont{border-left:4px solid var(--red-600);}
+.logo-rule h4{font-family:var(--font-heading);font-size:13px;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;}
+.logo-rule.do h4{color:var(--green-700);}
+.logo-rule.dont h4{color:var(--red-700);}
+.logo-rule ul{margin:0;padding-left:18px;}
+.logo-rule li{font-size:14px;color:var(--text-body-alt);margin:5px 0;}
+
+footer{padding:30px 56px;color:var(--text-muted);font-size:13px;border-top:1px solid var(--border-default);max-width:1440px;margin:0 auto;}
+
+/* ---------- copy toast ---------- */
+.copy-toast{
+  position:fixed;left:50%;bottom:28px;z-index:200;
+  transform:translate(-50%, 160%);
+  background:var(--bg-brand);color:var(--text-heading-on-dark);
+  font-family:var(--font-body);font-size:15px;font-weight:500;
+  padding:14px 22px;border-radius:var(--radius-outer);
+  box-shadow:var(--shadow-high);
+  display:flex;align-items:center;gap:6px;
+  opacity:0;pointer-events:none;
+  transition:transform .32s cubic-bezier(.22,1,.36,1), opacity .32s ease;
+}
+.copy-toast::before{content:"";width:18px;height:18px;flex-shrink:0;margin-right:4px;
+  background:var(--green-500);border-radius:50%;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat;}
+.copy-toast b{font-family:"Fira Code",monospace;font-weight:500;color:var(--green-200);letter-spacing:0.01em;}
+.copy-toast.show{transform:translate(-50%, 0);opacity:1;}
+@media print{ .copy-toast{display:none !important;} }
+
+@media (max-width:980px){
+  .layout{grid-template-columns:1fr;}
+  .sidenav{display:none;}
+  .content{padding:32px 24px 80px;}
+  .dual,.scan-grid,.roles,.callout-grid{grid-template-columns:1fr;}
+  .ramp-row,.ramp-row.g11{grid-template-columns:repeat(5,1fr);}
+}
+
+</style>
+
+<!-- Machine-readable mirror for agents that prefer structured data over the rendered DOM -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"DefinedTermSet","name":"Reviews.org Design System","description":"DESIGN.md (Google Stitch open format) — machine-readable tokens + human rationale.","inDefinedTermSet":"REV_DESIGN.md","url":"REV_DESIGN.md"}
+</script>
+</head>
+<body>
 
 <header class="topbar">
   <div class="brand">
@@ -530,5 +1032,851 @@
   Reviews.org Style Guide · rendered from <code>REV_DESIGN.md</code> (Google Stitch DESIGN.md format, Apache-2.0). Tokens and prose stay in sync because the page is built from the file.
 </footer>
 
-<script src="assets/guide.js"></script>
+<!-- raw DESIGN.md payload -->
+<script type="text/plain" id="design-md-src">
+---
+brand:
+  name: "Reviews.org"
+  tier: "Consumer Review Platform"
+  philosophy: "The friendly reviewer next door. Focuses on reviewing essential home services and tech products with complete honesty and transparency, putting consumer advocacy over marketing rhetoric."
+  mobile_priority_metric: "51% mobile user baseline (requires chunked text layouts, rapid readability, and strict scannability constraints)."
+
+primitives:
+  fonts:
+    first: "Work Sans"
+    second: "Rubik"
+    third: "Caveat"
+  weights:
+    extralight: 100
+    light: 200
+    thin: 300
+    normal: 400
+    medium: 500
+    semibold: 600
+    bold: 700
+    extrabold: 800
+    black: 900
+  sizes:
+    "0": 0
+    "0.25": 1
+    "0.5": 2
+    "1": 4
+    "1.5": 6
+    "2": 8
+    "2.5": 10
+    "3": 12
+    "3.5": 14
+    "4": 16
+    "4.5": 18
+    "5": 20
+    "6": 24
+    "7": 28
+    "8": 32
+    "9": 36
+    "10": 40
+    "11": 44
+    "12": 48
+    "14": 56
+    "16": 64
+    "20": 80
+    "24": 96
+    "28": 112
+    "32": 128
+    "36": 144
+    "40": 160
+    "44": 176
+    "48": 192
+    "52": 208
+    "56": 224
+    "60": 240
+    "64": 256
+    "72": 288
+    "80": 320
+    "96": 384
+  colors:
+    brand_blue:
+      "100": "#EBF2FD"
+      "200": "#DAE7FC"
+      "300": "#BDD4F9"
+      "400": "#8BB4F6"
+      "500": "#568EF5"
+      "600": "#315FE7"
+      "700": "#223EA2"
+      "800": "#172469"
+      "900": "#0C113C"
+    accent_red:
+      "100": "#FBEFEB"
+      "200": "#F7DAD4"
+      "300": "#EFB5A9"
+      "400": "#E8917D"
+      "500": "#E06C52"
+      "600": "#D84727"
+      "700": "#AD391F"
+      "800": "#822B17"
+      "900": "#561C10"
+    gray:
+      "050": "#F9F9FA"
+      "100": "#F3F3F4"
+      "150": "#E8E7E9"
+      "200": "#DCDBDE"
+      "250": "#C5C3C8"
+      "300": "#AEAAB1"
+      "350": "#8B8690"
+      "400": "#615E65"
+      "450": "#464348"
+      "500": "#2A282B"
+      "550": "#0E0D0E"
+    white:
+      "1000": "#FFFFFF"
+    red:
+      "100": "#FFF2F0"
+      "200": "#FFDCD8"
+      "300": "#FFA79D"
+      "400": "#FF7B70"
+      "500": "#FD413D"
+      "600": "#E11420"
+      "700": "#BE0014"
+      "800": "#8D000C"
+      "900": "#5D0005"
+    green:
+      "100": "#E9FBF4"
+      "200": "#BDF2DD"
+      "300": "#91E9C6"
+      "400": "#64E0AF"
+      "500": "#22D38C"
+      "600": "#1BA970"
+      "700": "#147F54"
+      "800": "#0E5438"
+      "900": "#072A1C"
+    yellow:
+      "100": "#FEF4E8"
+      "200": "#FEEFDD"
+      "300": "#FDDFBB"
+      "400": "#FBCA8E"
+      "500": "#FEB24D"
+      "600": "#F7941D"
+      "700": "#C67617"
+      "800": "#7C4A0F"
+      "900": "#4A2C09"
+
+colors:
+  text:
+    heading: "#0E0D0E"
+    heading-on-dark: "#FFFFFF"
+    body: "#464348"
+    body-on-dark: "#FFFFFF"
+    body-alt: "#615E65"
+    body-alt-on-dark: "rgba(255, 255, 255, 0.95)"
+    muted: "#8B8690"
+    muted-on-dark: "rgba(255, 255, 255, 0.9)"
+    link: "#D84727"
+    link-hover: "#822B17"
+    link-on-dark: "#EFB5A9"
+    link-on-dark-hover: "#E8917D"
+    error: "#E11420"
+    error-on-dark: "#FFDCD8"
+    success: "#1BA970"
+    success-on-dark: "#E9FBF4"
+  background:
+    default: "#FFFFFF"
+    default-active: "#EBF2FD"
+    default-hover: "#BDD4F9"
+    brand: "#0C113C"
+    brand-light: "#DAE7FC"
+    brand-dark: "#0C113C"
+    strong: "#2A282B"
+    muted: "#F9F9FA"
+    success: "#1BA970"
+    error: "#E11420"
+  button:
+    primary: "#D84727"
+    primary-hover: "#822B17"
+    primary-active: "#561C10"
+    secondary: "#FFFFFF"
+    secondary-hover: "#FBEFEB"
+  border:
+    default: "#DCDBDE"
+    default-active: "#568EF5"
+    brand: "#0C113C"
+    brand-light: "#315FE7"
+    brand-dark: "#0C113C"
+    muted: "#E8E7E9"
+    strong: "#464348"
+    success: "#22D38C"
+    error: "#E11420"
+    button-secondary: "#D84727"
+    button-secondary-hover: "#AD391F"
+
+typography:
+  families:
+    heading: "Work Sans"
+    body: "Rubik"
+    creative: "Caveat"
+  weights:
+    regular: 400
+    medium: 500
+    semibold: 600
+    bold: 700
+
+borders:
+  radius:
+    none: "0px"
+    inner: "4px"
+    outer: "10px"
+    outer-lg: "16px"
+    full: "384px"
+  width:
+    subtle: "1px"
+    default: "2px"
+    emphasis: "4px"
+
+shadows:
+  flat: "none"
+  low: "0px -1px 2px rgba(0, 0, 0, 0.04), 0px 2px 4px rgba(0, 0, 0, 0.16)"
+  medium: "0px -1px 4px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.16)"
+  high: "0px -1px 6px rgba(0, 0, 0, 0.04), 0px 12px 24px rgba(0, 0, 0, 0.24)"
+  xhigh: "0px -1px 8px rgba(0, 0, 0, 0.04), 0px 24px 32px rgba(0, 0, 0, 0.56)"
+
+effects:
+  focus-brand: "box-shadow: -2px -2px 0 0 #D84727, 2px 2px 0 0 #D84727, -2px 2px 0 0 #D84727, 2px -2px 0 0 #D84727;"
+---
+
+# Reviews.org Design System Body
+
+## Brand Overview & Writing Style Guidelines
+
+### Core Brand Identity
+[cite_start]Reviews.org serves as an authentic consumer guide, delivering conversational, direct, and straightforward home service reviews[cite: 116, 119]. [cite_start]The writing tone avoids traditional corporate marketing rhetoric to ensure maximum reader trust[cite: 120, 153].
+
+### Dimensions of Voice
+* [cite_start]**Funny vs. Serious:** Lighthearted and highly entertaining, using everyday language and relatable cultural markers to diffuse technical topics[cite: 242, 243].
+* [cite_start]**Formal vs. Casual:** Highly conversational[cite: 246]. [cite_start]The use of plain idioms, casual syntax, and contractions is fully authorized across web surfaces, Titling, and UI blocks[cite: 247, 248].
+* [cite_start]**Respectful vs. Irreverent:** Laid back, yet completely solution-oriented[cite: 253]. [cite_start]Friendly humor must never disrupt the straightforward delivery of clear answers[cite: 254].
+* [cite_start]**Enthusiastic vs. Matter-of-Fact:** Energetic, clear, and opinionated[cite: 259, 262]. [cite_start]Avoid passive balancing loops; take a definitive editorial stand to assist user confidence[cite: 262].
+
+### Web Content Scannability Rules (Mobile-First Optimization)
+[cite_start]Given that more than half of the user baseline browse via mobile devices, front-end content blocks must implement strict scannability controls[cite: 189, 191]:
+* [cite_start]**Layout Segmentation:** Segment content zones explicitly into focused packages of 250 to 550 words[cite: 194, 195].
+* [cite_start]**Sentence Length Limits:** Maximize readability by capping prose blocks at 20 words per single sentence and 5 sentences per layout paragraph[cite: 197].
+* [cite_start]**Bullet Structures:** Bulleted list values must be concise (3 to 12 words per list element), emphasizing clear utility[cite: 198, 199].
+* [cite_start]**Scannable Element Contrast:** Deploy deep typographical contrast via aggressive subheads, selective bolding, callouts, and clean evaluation tables to support rapid user scanning[cite: 200, 201, 202].
+
+---
+
+## Component Specifications
+
+## Primary Button
+
+### Rationale
+[cite_start]The main CTA button site-wide[cite: 103]. Used for the primary action users should take on a page to move effectively through the conversion funnel.
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik), `typography.weights.semibold` (600)
+* **Border Radius:** `borders.radius.inner` (4px)
+* **Padding (Medium/Default):** 12px Vertical / 16px Horizontal (maps directly to fixed component layouts)
+
+### Interaction States
+
+| State | Background Color Token | Text Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- |
+| **Default** | `colors.button.primary` | `colors.text.body-on-dark` | Standard presentation state. |
+| **Hover** | `colors.button.primary-hover` | `colors.text.body-on-dark` | Background darkens to `#822B17`. Transition: .15s. |
+| **Focus** | `colors.button.primary-hover` | `colors.text.body-on-dark` | Triggers browser-native focus-ring configuration. |
+| **Active (Pressed)**| `primitives.colors.accent_red.900` | `colors.text.body-on-dark` | Full depth state (`#561C10`). |
+| **Disabled** | `primitives.colors.gray.400` | `colors.text.body-on-dark` | Inactive, non-interactive visual state (`#615E65`). |
+
+---
+
+## Secondary Button
+
+### Rationale
+[cite_start]The secondary CTA button site-wide[cite: 1080]. Used for auxiliary user options or multi-choice comparison matrix blocks.
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik), `typography.weights.semibold` (600)
+* **Border:** `borders.width.default` (2px solid wire outline configuration)
+* **Border Radius:** `borders.radius.inner` (4px)
+* **Padding (Medium/Default):** 12px Vertical / 16px Horizontal
+* [cite_start]**CMS Integration:** Text string and optional underlying description line are exposed to the publishing workflow for manual disclaimers[cite: 1102].
+
+### Interaction States
+
+| State | Background Color Token | Border Color Token | Text Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Default** | `colors.button.secondary` | `colors.border.button-secondary` | `colors.border.button-secondary` | Clear interior surface, red line layout. |
+| **Hover** | `colors.button.secondary` | `colors.border.button-secondary-hover` | `colors.text.link-hover` | Animation timing: .15s. |
+| **Focus** | `colors.button.secondary` | `colors.border.button-secondary-hover` | `colors.text.link-hover` | Activates native focus system outline. |
+| **Active (Pressed)** | `colors.button.secondary-hover` | `colors.border.button-secondary-hover` | `colors.text.link-hover` | Shifts background to smooth brand tint (`#FBEFEB`). |
+| **Disabled** | `primitives.colors.gray.400` | `primitives.colors.gray.400` | `colors.text.body-on-dark` | Outlined elements flatten into an inactive box layer. |
+
+---
+
+## Text Button
+
+### Rationale
+[cite_start]A minimal, lower-emphasis inline or structural action indicator that shows text without a bounding container layer[cite: 1108].
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik), `typography.weights.semibold` (600)
+* **Padding:** 12px Vertical / 16px Horizontal (Maintains active touch padding dimensions to safeguard mobile hit areas).
+* **Internal Gap:** `primitives.sizes.0.5` (4px layout gap constraint)
+* **CMS Integration:** Core string fully editable by platform publishers.
+
+### Interaction States
+
+| State | Background Color Token | Text / Icon Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- |
+| **Default** | `transparent` | `colors.text.link` | Minimal containerless form. |
+| **Hover** | `transparent` | `colors.text.link-hover` | Color updates over .15s animation curve. |
+| **Focus** | `transparent` | `colors.text.link-hover` | Shows system structural outline box area. |
+| **Active (Pressed)** | `transparent` | `primitives.colors.accent_red.900` | Text shifts down to base deep state shade (`#561C10`). |
+| **Disabled** | `transparent` | `primitives.colors.gray.400` | text string changes to color `#615E65`. |
+
+---
+
+## Accordion
+
+### Rationale
+[cite_start]A vertically expanding accordion structure used to structure and wrap detailed informative items like FAQ logs or localized regional summaries[cite: 1130].
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik), Label: Semibold (600), Body Content text: Regular (400).
+* **Border Mapping:** `borders.width.subtle` (1px solid structure applied to the item bottom layout edge only)
+* **Layout Variations:**
+    * *Default Style:* Navigation indicator chevron sits to the immediate left of the item header text string.
+    * *Compact Style:* Navigation chevron gets pushed flush against the right-side container layout border.
+* [cite_start]**Core CMS Constraint:** Publishers define header and target inner body text parameters[cite: 1131]. Code architecture allows string content only inside body spaces.
+
+### Interaction States
+
+| State | Background Color Token | Border Color Token | Text & Icon Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Default (Collapsed)** | `transparent` | `colors.border.muted` | `colors.text.heading` | Chevron indicator points down. |
+| **Hover (Collapsed)** | `transparent` | `colors.border.muted` | `colors.text.link` | Header elements activate red accent state tracking. |
+| **Active (Expanded)** | `transparent` | `colors.border.muted` | `colors.text.heading` | Chevron points up. Body displays text via `colors.text.body`. |
+| **Focus** | `transparent` | `colors.border.muted` | `primitives.colors.accent_red.700` | Label drops one shade darker than hover selection (`#AD391F`). |
+
+---
+
+## Dropdown
+
+### Rationale
+[cite_start]An interactive multi-state selector block composed of a trigger button field and an optional float overlay choice layer[cite: 1155, 1191].
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik).
+* **Border Architecture:** `borders.radius.inner` (4px), `borders.width.subtle` (1px structure)
+* [cite_start]**Implementation Rules:** Renders default browser picker styling elements unless the custom floating popover overlay is requested[cite: 1191]. [cite_start]Optional label slots available for form context guidance[cite: 1156].
+
+### Interaction States: Dropdown Button (Trigger)
+
+| State | Background Color Token | Border Color Token | Text Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Default** | `colors.bg-content.default` | `colors.border.default` | `colors.text.body` | Standard form setup presentation. |
+| **Hover** | `colors.bg-content.default` | `colors.border.default` | `colors.text.body` | Maintained flush with no visual variation from default. |
+| **Active / Focus** | `colors.bg-content.default` | `colors.border.default` | `colors.text.body` | Applies global `effects.focus-brand` thick ring shadow style. |
+| **Error** | `colors.bg-content.default` | `colors.border.error` | `colors.text.body` | [cite_start]Field outline uses error red; validation label shows error token[cite: 1168]. |
+
+---
+
+## Filter Chip
+
+### Rationale
+[cite_start]A compact selector pill used for rapid page data filtering or layout switching, optimized heavily for mobile tap sequences[cite: 1208, 1209].
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik)
+* **Padding:** 10px uniform layout bounds (`space.padding-fixed.xsm`)
+* **Internal Gap:** `primitives.sizes.0.5` (4px layout gap constraint)
+* **Border Definition:** `borders.width.default` (2px), `borders.radius.outer` (10px pill styling)
+* **Front-End Layout Rules:** Flex row configurations must impose an explicit **12px item gutter**. Labels must enforce text truncation rules at a **20-character maximum cap**.
+
+### Interaction States
+
+| State | Background Color Token | Border Color Token | Text Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Default** | `colors.background.default` | `colors.border.brand` | `colors.text.heading` | Standard inactive tracking view. |
+| **Hover** | `colors.background.default` | `colors.border.default-active` | `colors.text.heading` | Border color transitions to match the selected layout state line color. |
+| **Focus** | `colors.background.default` | `primitives.colors.brand_blue.600` | `colors.text.heading` | Border drops one primitive step darker than hover selection (`#315FE7`). |
+| **Selected** | `colors.background.default-active` | `colors.border.default-active` | `colors.text.heading` | Activated target state profile. |
+
+---
+
+## Label (Container Header)
+
+### Rationale
+[cite_start]Used to highlight a specific status or attribute of an item or content zone[cite: 1223]. [cite_start]They provide brief, scannable information that helps users identify key items or make quick choices without cluttering body text spaces[cite: 1224].
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik), bold (700) configuration for standard labels.
+* **Width:** 356px baseline structure.
+* **Padding:** `space.padding-fixed.md` (22px uniform layout cushioning on all boundaries).
+* **Gap:** `space.gap-fixed.xs` (8px interior horizontal flex gap element).
+* **Border Radius:** `borders.radius.outer` (10px) restricted explicitly to the **top-left** and **top-right** quadrants (`10px 10px 0 0`).
+* **CMS & Asset Behavior:** Publishers can explicitly edit label text strings and switch the container wrapper status between "Default" and "Highlighted" layout variants.
+* **Badge & Icon Support:** Includes an optional media container asset lane where a publisher can upload a primary icon/badge image file.
+
+### Variant States
+
+| Variant Style | Background Color Token | Text / Icon Color Token | Structural Execution Notes |
+| :--- | :--- | :--- | :--- |
+| **Default** | `colors.background.muted` | `colors.text.body` | Light layout header variant (`#F9F9FA`) with neutral body text selection (`#464348`). |
+| **Highlighted** | `colors.background.brand-dark` | `colors.text.body-on-dark` | High-contrast brand layout configuration (`#0C113C`) utilizing true white overlay elements (`#FFFFFF`). |
+
+---
+
+## Separator
+
+### Rationale
+[cite_start]A thin visual rule used to divide and organize content within a layout[cite: 1237]. [cite_start]Use it to create a clear distinction between separate sections of content, such as items in a list or distinct UI regions[cite: 1238].
+
+### Anatomy & Spacing
+* **Height / Thickness:** `borders.width.subtle` (1px execution)
+* **Width:** 100% of the parent container baseline space.
+
+### Structural Variants
+
+| Variant Type | Stroke Color Token | Rationale & Usage |
+| :--- | :--- | :--- |
+| **Muted (Subtle)** | `colors.border.muted` | A low-contrast divider (`#E8E7E9`) used for minor list-item breakouts or soft secondary breaks. |
+| **Default** | `colors.border.default` | The standard border color (`#DCDBDE`) used to isolate higher-level regional blocks or content zones. |
+
+---
+
+## List & List Item
+
+### Rationale
+[cite_start]Used to organize and display related items in a structured format, with explicit stylistic variations optimized for rapid visual comparisons (pro/con analysis, spec highlights, or bullet points)[cite: 1251, 1252].
+
+### Anatomy & Editorial Constraints
+* **Typography:** `typography.families.body` (Rubik).
+* [cite_start]**Scannability Rule:** To match the brand guidelines, listed bullet elements should be kept short (ideally **3 to 12 words**), focusing entirely on concise value delivery[cite: 199].
+
+### Structural Variants
+
+| Variant Type | Visual/Token Mapping | Implementation Notes |
+| :--- | :--- | :--- |
+| **Info / Spec List** | [cite_start]**Label:** `colors.text.body`<br>**Value:** `colors.text.heading`, bold (700) [cite: 1243] | Two-column inline configuration. [cite_start]Ideal for displaying tabular package features side by side[cite: 1243, 1244, 1245]. |
+| **Standard Icon List** | **Icon:** `colors.text.heading`<br>**Text:** Bold string prefix + Regular body text | General purpose list item with strong typography contrast. |
+| **Pro List Item** | [cite_start]**Icon:** Green circle check (`colors.success` / `#1BA970`) [cite: 609]<br>**Text:** `colors.text.body` | [cite_start]Used to validate high-value features or benefits cleanly[cite: 1248]. |
+| **Con List Item** | [cite_start]**Icon:** Red circle minus (`colors.error` / `#E11420`) [cite: 619]<br>**Text:** `colors.text.body` | [cite_start]Used to address negatives transparently without losing a helpful tone[cite: 1249]. |
+| **Divided Variant** | Integrates an underlying rule via `borders.width.subtle` (1px) and `colors.border.muted` | Can be combined with any list item type above to create row separation. |
+
+---
+
+## Callout Box Icon List
+
+### Rationale
+[cite_start]A multi-item promotional or navigational grid layout used to highlight product features, service verticals, or curated ecosystem choices side-by-side with high structural emphasis[cite: 1312].
+
+### Anatomy & Layout Options
+* [cite_start]**Grid Capacity:** 1 to 6 items maximum per block instance[cite: 1318].
+* [cite_start]**Desktop Layout:** Items expand horizontally in a single fluid row configuration[cite: 1319].
+* [cite_start]**Mobile Layout:** Supports fallback settings for vertical stacking (inline) or a balanced 2-up responsive matrix grid[cite: 1320].
+* [cite_start]**Container Variations:** The underlying card box can be configured as a **Color Outline** or a solid **Color Fill**, with or without a global drop shadow[cite: 1322, 1323, 1324].
+* [cite_start]**Border Radius:** `borders.radius.outer` (10px) applied uniformly[cite: 1325].
+* [cite_start]**Elevation Ring:** Configured to trigger `shadows.medium` if drop shadows are active[cite: 1361].
+* [cite_start]**Alignment controls:** Platform publishers can change layout alignment rules globally between left, center, or right[cite: 1326].
+
+### Sub-Element Token Mappings
+
+| Element Item | Typography / Token Rule | Behavior & CMS Rules |
+| :--- | :--- | :--- |
+| **1. Callout Icon** | [cite_start]Core asset: 46x46px<br>Wrapper layer: 64x64px [cite: 1353] | [cite_start]Designers can configure the illustration style to visually overlap the box border boundaries or sit completely inside the padding lines[cite: 1321]. |
+| **2. Heading Text** | [cite_start]`typography.families.heading` (Work Sans)<br>Style matches **H3** values [cite: 1354, 1355] | [cite_start]Center-aligned by default within the card frame[cite: 1358]. |
+| **3. Body Text** | [cite_start]`typography.families.body` (Rubik)<br>Style matches **P-default** [cite: 1356] | Left-aligned by default within the core block frame to maintain layout symmetry. |
+| **4. Link Text** | [cite_start]`colors.text.link`<br>Style matches **P-default** [cite: 1357] | Primary inline link styling; center-aligned below the summary text block. |
+| **5. CTA Button** | [cite_start]Fully maps to the **Primary Button** or **Secondary Button** component template [cite: 1359] | Set to medium button heights (`space.padding-fixed.button.md`) and center-aligned. |
+</script>
+<script>
+/* ============================================================
+   Reviews.org Style Guide — render specimens from token data
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* ---------- copy-confirmation toast ---------- */
+  var toastEl, toastTimer;
+  function showToast(value, kind) {
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.className = 'copy-toast';
+      document.body.appendChild(toastEl);
+    }
+    if (kind === 'download') {
+      toastEl.innerHTML = 'Downloading <b>' + value + '</b>…';
+    } else if (kind === 'file') {
+      toastEl.innerHTML = 'Filename <b>' + value + '</b> has been copied!';
+    } else {
+      toastEl.innerHTML = 'Hexcode <b>' + value.toUpperCase() + '</b> has been copied!';
+    }
+    // restart the animation cleanly
+    toastEl.classList.remove('show');
+    void toastEl.offsetWidth;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 2200);
+  }
+
+  /* ---------- raw DESIGN.md → source view + copy/download ---------- */
+  var raw = (document.getElementById('design-md-src') || {}).textContent || '';
+  raw = raw.replace(/^\s+|\s+$/g, '');
+
+  // line-numbered render
+  var srcBody = document.getElementById('srcBody');
+  if (srcBody) {
+    var lines = raw.split('\n');
+    var w = String(lines.length).length;
+    srcBody.textContent = '';
+    lines.forEach(function (line, i) {
+      var n = document.createElement('span');
+      n.className = 'ln';
+      n.textContent = String(i + 1).padStart(w, ' ') + '  ';
+      srcBody.appendChild(n);
+      srcBody.appendChild(document.createTextNode(line + '\n'));
+    });
+  }
+
+  function flash(btn, ok) {
+    var t = btn.textContent;
+    btn.textContent = ok || 'Copied!';
+    setTimeout(function () { btn.textContent = t; }, 1300);
+  }
+  function copyMd(btn) {
+    navigator.clipboard && navigator.clipboard.writeText(raw).then(function () { flash(btn); });
+  }
+  function dlMd() {
+    var blob = new Blob([raw], { type: 'text/markdown' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'REV_DESIGN.md';
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+  ['copyMd', 'copyMd2'].forEach(function (id) {
+    var b = document.getElementById(id); if (b) b.addEventListener('click', function () { copyMd(b); });
+  });
+  ['dlMd', 'dlMd2'].forEach(function (id) {
+    var b = document.getElementById(id); if (b) b.addEventListener('click', dlMd);
+  });
+
+  /* ---------- voice dials ---------- */
+  var voice = [
+    { l: 'Funny', r: 'Serious', pos: 25, txt: 'Lighthearted and entertaining — everyday language and cultural markers diffuse technical topics.' },
+    { l: 'Formal', r: 'Casual', pos: 90, txt: 'Highly conversational. Idioms, casual syntax, and contractions are authorized across all surfaces.' },
+    { l: 'Respectful', r: 'Irreverent', pos: 55, txt: 'Laid back yet solution-oriented. Friendly sass never disrupts a clear answer.' },
+    { l: 'Matter-of-fact', r: 'Enthusiastic', pos: 28, txt: 'Energetic, clear, and opinionated. Take a definitive stand — skip the passive balancing loops.' }
+  ];
+  var dials = document.getElementById('dials');
+  if (dials) voice.forEach(function (d) {
+    var el = document.createElement('div');
+    el.className = 'dial';
+    el.innerHTML =
+      '<div class="row"><span class="l">' + d.l + '</span><span class="r">' + d.r + '</span></div>' +
+      '<div class="track"><span class="fill" style="left:calc(' + d.pos + '% - 7px)"></span></div>' +
+      '<p>' + d.txt + '</p>';
+    dials.appendChild(el);
+  });
+
+  /* ---------- color ramps ---------- */
+  var ramps = [
+    { name: 'Brand blue — chrome, links, focus', prefix: 'blue', steps: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] },
+    { name: 'Accent red — CTAs, brand mark', prefix: 'ared', steps: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] },
+    { name: 'Gray — surfaces, text, dividers', prefix: 'gray', steps: ['050', '100', '150', '200', '250', '300', '350', '400', '450', '500', '550'] },
+    { name: 'Red — errors & alerts', prefix: 'red', steps: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] },
+    { name: 'Green — success & pros', prefix: 'green', steps: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] },
+    { name: 'Yellow — ratings & stars', prefix: 'yellow', steps: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] }
+  ];
+  function readVar(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+  function lum(hex) {
+    var c = hex.replace('#', '');
+    if (c.length === 3) c = c.split('').map(function (x) { return x + x; }).join('');
+    var r = parseInt(c.substr(0, 2), 16), g = parseInt(c.substr(2, 2), 16), b = parseInt(c.substr(4, 2), 16);
+    return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  }
+  function legacyCopy(txt) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, txt.length);
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
+  function copyText(txt, node) {
+    // visual + toast feedback always fires, regardless of clipboard permission
+    function feedback() {
+      node.classList.add('copied');
+      setTimeout(function () { node.classList.remove('copied'); }, 900);
+      showToast(txt);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(feedback, function () {
+        legacyCopy(txt); feedback();
+      });
+    } else {
+      legacyCopy(txt); feedback();
+    }
+  }
+  var rampsEl = document.getElementById('ramps');
+  if (rampsEl) ramps.forEach(function (rp) {
+    var wrap = document.createElement('div');
+    wrap.className = 'ramp';
+    var row = '<div class="ramp-row' + (rp.steps.length > 9 ? ' g11' : '') + '">';
+    rp.steps.forEach(function (s) {
+      var v = '--' + rp.prefix + '-' + s;
+      var hex = readVar(v);
+      var dark = lum(hex) < 0.58;
+      row += '<div class="swatch" data-hex="' + hex + '" style="background:' + hex + ';color:' + (dark ? '#fff' : '#0E0D0E') + '">' +
+        '<span class="step">' + s + '</span><span class="hex">' + hex.toUpperCase() + '</span></div>';
+    });
+    row += '</div>';
+    wrap.innerHTML = '<h4>' + rp.name + '</h4>' + row;
+    rampsEl.appendChild(wrap);
+  });
+
+  /* ---------- semantic roles ---------- */
+  var roles = [
+    ['text.heading', '--text-heading'], ['text.body', '--text-body'], ['text.body-alt', '--text-body-alt'],
+    ['text.muted', '--text-muted'], ['text.link', '--text-link'], ['text.link-hover', '--text-link-hover'],
+    ['text.error', '--text-error'], ['text.success', '--text-success'],
+    ['bg.default', '--bg-default'], ['bg.muted', '--bg-muted'], ['bg.brand', '--bg-brand'], ['bg.strong', '--bg-strong'],
+    ['button.primary', '--btn-primary'], ['button.primary-hover', '--btn-primary-hover'],
+    ['button.primary-active', '--btn-primary-active'], ['button.secondary-hover', '--btn-secondary-hover'],
+    ['border.default', '--border-default'], ['border.muted', '--border-muted'],
+    ['border.brand', '--border-brand'], ['border.error', '--border-error']
+  ];
+  var rolesEl = document.getElementById('roles');
+  if (rolesEl) {
+    rolesEl.className = 'roles';
+    roles.forEach(function (r) {
+      var hex = readVar(r[1]);
+      var el = document.createElement('div');
+      el.className = 'role';
+      el.setAttribute('data-hex', hex);
+      el.innerHTML = '<span class="chip" style="background:' + hex + '"></span>' +
+        '<span><span class="name">' + r[0] + '</span><br><span class="val">' + hex.toUpperCase() + '</span></span>';
+      rolesEl.appendChild(el);
+    });
+  }
+
+  /* click-to-copy for swatches + roles */
+  document.addEventListener('click', function (e) {
+    var s = e.target.closest('.swatch,.role');
+    if (s && s.getAttribute('data-hex')) copyText(s.getAttribute('data-hex'), s);
+    var fn = e.target.closest('.logo-meta .fn');
+    if (fn && fn.getAttribute('data-file')) copyFile(fn.getAttribute('data-file'));
+  });
+
+  function copyFile(name) {
+    // download the actual asset; prefer the inlined blob in standalone builds
+    var key = 'dl_' + name.replace(/[^a-z0-9]/gi, '_');
+    var inlined = (window.__resources || {})[key];
+    function trigger(href, revoke) {
+      var a = document.createElement('a');
+      a.href = href;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      if (revoke) setTimeout(function () { URL.revokeObjectURL(href); }, 1000);
+      showToast(name, 'download');
+    }
+    if (inlined) { trigger(inlined, false); return; }
+    var url = 'assets/' + name;
+    fetch(url).then(function (r) {
+      if (!r.ok) throw new Error('fetch failed');
+      return r.blob();
+    }).then(function (blob) {
+      trigger(URL.createObjectURL(blob), true);
+    }).catch(function () {
+      trigger(url, false); // fallback: direct link
+    });
+  }
+
+  /* ---------- type scale ---------- */
+  var sizes = [
+    ['display-1', 64], ['display-2', 56], ['h1', 48], ['h2', 40], ['h3', 32],
+    ['h4', 28], ['h5', 24], ['body-2xl', 20], ['body-lg', 18], ['body-default', 16],
+    ['body-sm', 14], ['eyebrow / label', 12]
+  ];
+  var tsEl = document.getElementById('typescale');
+  if (tsEl) sizes.forEach(function (s) {
+    var cap = Math.min(s[1], 52);
+    var row = document.createElement('div');
+    row.className = 'ts-row';
+    row.innerHTML = '<span class="ts-meta">' + s[0] + ' · ' + s[1] + 'px</span>' +
+      '<span class="ts-sample" style="font-size:' + cap + 'px">Honest, helpful reviews</span>';
+    tsEl.appendChild(row);
+  });
+
+  /* ---------- spacing scale ---------- */
+  var spaces = [
+    ['1', 4], ['2', 8], ['3', 12], ['4', 16], ['5', 20], ['6', 24],
+    ['8', 32], ['10', 40], ['12', 48], ['16', 64], ['20', 80], ['24', 96]
+  ];
+  var spEl = document.getElementById('spacescale');
+  if (spEl) spaces.forEach(function (s) {
+    var row = document.createElement('div');
+    row.className = 'space-row';
+    row.innerHTML = '<span class="lab">space-' + s[0] + ' · ' + s[1] + 'px</span>' +
+      '<span class="bar" style="width:' + s[1] + 'px"></span>';
+    spEl.appendChild(row);
+  });
+
+  /* ---------- accordion ---------- */
+  var acc = document.getElementById('acc');
+  if (acc) acc.addEventListener('click', function (e) {
+    var hd = e.target.closest('.hd'); if (!hd) return;
+    var item = hd.closest('.item');
+    item.classList.toggle('open');
+  });
+
+  /* ---------- filter chips ---------- */
+  document.querySelectorAll('#chip .rev-chip').forEach(function (c) {
+    c.addEventListener('click', function () { c.classList.toggle('sel'); });
+  });
+
+  /* ---------- scrollspy ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.sidenav a'));
+  var map = {};
+  navLinks.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) {
+        navLinks.forEach(function (a) { a.classList.remove('active'); });
+        var a = map[en.target.id]; if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-90px 0px -70% 0px' });
+  document.querySelectorAll('section[id]').forEach(function (s) { obs.observe(s); });
+
+  /* ---------- nav search ---------- */
+  (function () {
+    var input = document.getElementById('searchInput');
+    var box = document.getElementById('searchResults');
+    if (!input || !box) return;
+
+    // keyword synonyms to widen matching beyond the visible title
+    var KW = {
+      overview: 'intro start design.md stitch tokens machine readable summary',
+      logo: 'brand mark wordmark icon doodle favicon avatar svg png download',
+      voice: 'tone writing copy style dials funny casual sass enthusiastic',
+      scannability: 'mobile readability words sentences bullets contrast',
+      color: 'colours palette hex swatch ramp primitive semantic role blue red navy gray green yellow',
+      type: 'typography font fonts typeface work sans rubik caveat weight scale heading body specimen',
+      spacing: 'space gap padding margin grid 4px rhythm',
+      radii: 'radius corners border width rounded',
+      shadows: 'shadow elevation depth focus ring',
+      buttons: 'button cta primary secondary text action',
+      accordion: 'accordion expand collapse faq disclosure',
+      dropdown: 'dropdown select menu field error',
+      chip: 'filter chip pill tag toggle',
+      label: 'label header badge tag status',
+      separator: 'separator divider rule line hr',
+      lists: 'list bullet pro con spec comparison',
+      callout: 'callout box card grid feature vertical',
+      source: 'design.md source raw yaml markdown agent lint download export'
+    };
+
+    // build index from sidenav anchors: title + group heading
+    var index = [];
+    var links = document.querySelectorAll('.sidenav a[href^="#"]');
+    links.forEach(function (a) {
+      var id = a.getAttribute('href').slice(1);
+      // nearest preceding .grp label
+      var group = 'Section', n = a.previousElementSibling;
+      while (n) { if (n.classList && n.classList.contains('grp')) { group = n.textContent; break; } n = n.previousElementSibling; }
+      index.push({ id: id, title: a.textContent.replace(/\s+/g, ' ').trim(), group: group, kw: KW[id] || '' });
+    });
+
+    var results = [], active = -1;
+
+    function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+    function highlight(title, q) {
+      if (!q) return title;
+      var re = new RegExp('(' + esc(q) + ')', 'ig');
+      return title.replace(re, '<mark>$1</mark>');
+    }
+
+    function render(q) {
+      box.innerHTML = '';
+      if (results.length === 0) {
+        box.innerHTML = '<div class="none">No match for <b>“' + q.replace(/</g, '&lt;') + '”</b>. Try “color”, “buttons”, or “font”.</div>';
+        box.classList.add('open'); input.setAttribute('aria-expanded', 'true');
+        return;
+      }
+      results.forEach(function (r, i) {
+        var b = document.createElement('button');
+        b.className = 'sr' + (i === active ? ' active' : '');
+        b.setAttribute('role', 'option');
+        b.dataset.id = r.id;
+        b.innerHTML = '<span class="t">' + highlight(r.title, q) + '</span><span class="g">' + r.group + '</span>';
+        b.addEventListener('mouseenter', function () { active = i; paintActive(); });
+        b.addEventListener('click', function () { go(r.id); });
+        box.appendChild(b);
+      });
+      box.classList.add('open'); input.setAttribute('aria-expanded', 'true');
+    }
+
+    function paintActive() {
+      var items = box.querySelectorAll('.sr');
+      items.forEach(function (el, i) { el.classList.toggle('active', i === active); });
+    }
+
+    function search(q) {
+      q = q.trim().toLowerCase();
+      if (!q) { close(); return; }
+      var scored = [];
+      index.forEach(function (r) {
+        var t = r.title.toLowerCase();
+        var s = -1;
+        if (t.indexOf(q) === 0) s = 0;            // title prefix — best
+        else if (t.indexOf(q) > -1) s = 1;        // title contains
+        else if (r.kw.indexOf(q) > -1) s = 2;     // keyword match
+        if (s > -1) scored.push({ r: r, s: s });
+      });
+      scored.sort(function (a, b) { return a.s - b.s; });
+      results = scored.map(function (x) { return x.r; });
+      active = results.length ? 0 : -1;
+      render(q);
+    }
+
+    function go(id) {
+      close();
+      input.value = '';
+      var el = document.getElementById(id);
+      if (el) {
+        history.replaceState(null, '', '#' + id);
+        window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 84, behavior: 'smooth' });
+        el.style.transition = 'none';
+      }
+      input.blur();
+    }
+
+    function close() { box.classList.remove('open'); input.setAttribute('aria-expanded', 'false'); }
+
+    input.addEventListener('input', function () { search(input.value); });
+    input.addEventListener('focus', function () { if (input.value.trim()) search(input.value); });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); if (results.length) { active = (active + 1) % results.length; paintActive(); } }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); if (results.length) { active = (active - 1 + results.length) % results.length; paintActive(); } }
+      else if (e.key === 'Enter') { e.preventDefault(); if (active > -1 && results[active]) go(results[active].id); }
+      else if (e.key === 'Escape') { close(); input.blur(); }
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('#navSearch')) close();
+    });
+  })();
+})();
+
+</script>
 </body>
+</html>
