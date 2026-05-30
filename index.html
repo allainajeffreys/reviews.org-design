@@ -1,62 +1,990 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reviews.org · Style Guide</title>
-  
-  <link rel="stylesheet" href="tokens.css">
-  <link rel="stylesheet" href="styleguide.css">
-</head>
 <body>
 
-  <div class="topbar">
-    <div class="logo">
-      <svg class="logo-mark" viewBox="0 0 62 60" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M53.0344 50.5604C58.0717 45.1894 61.1509 38.0111 61.1509 30.1222C61.1509 13.484 47.4632 0 30.5737 0C13.6877 0 0 13.6468 0 30.2849C0 47.4893 13.5562 59.4383 34.0953 59.4383H61.5489L53.0131 51.5616H34.0953C18.1431 51.5616 9.62413 41.8584 9.62413 30.7663C9.62413 19.3644 19.0039 9.80646 30.5737 9.80646C42.147 9.80646 51.5232 18.8821 51.5232 30.2841C51.5232 34.835 50.0281 38.9607 47.4979 42.3686C47.0963 42.9077 46.4886 44.1584 47.5698 45.22C48.6501 46.2825 53.0344 50.5604 53.0344 50.5604Z" fill="#D84727"></path>
-      </svg>
-      <span class="logo-text">Reviews.org <span class="subtext">Style Guide</span></span>
-    </div>
-    
-    <div class="search-wrapper" id="searchWrapper">
-      <div class="search-input-box">
-        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" id="searchInput" placeholder="Search tokens, colors, components..." autocomplete="off" aria-expanded="false" aria-controls="searchResults">
+<template id="__bundler_thumbnail" data-bg-color="#0C113C">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0C113C"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" transform="translate(490 330) scale(3.5)" d="M53.0344 50.5604C58.0717 45.1894 61.1509 38.0111 61.1509 30.1222C61.1509 13.484 47.4632 0 30.5737 0C13.6877 0 0 13.6468 0 30.2849C0 47.4893 13.5562 59.4383 34.0953 59.4383H61.5489L53.0131 51.5616H34.0953C18.1431 51.5616 9.62413 41.8584 9.62413 30.7663C9.62413 19.3644 19.0039 9.80646 30.5737 9.80646C42.147 9.80646 51.5232 18.8821 51.5232 30.2841C51.5232 34.835 50.0281 38.9607 47.4979 42.3686C47.0963 42.9077 46.4886 44.1584 47.5698 45.22C48.6501 46.2825 53.0344 50.5604 53.0344 50.5604Z" fill="#D84727"/>
+  </svg>
+</template>
+
+<header class="topbar">
+  <div class="brand">
+    <img class="logo-lockup" src="assets/logo-wordmark-light.svg" alt="Reviews.org">
+  </div>
+  <div class="divider"></div>
+  <span class="kicker">Style Guide</span>
+  <div class="spacer"></div>
+  <div class="nav-search" id="navSearch">
+    <svg class="si" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="searchInput" type="text" placeholder="Search the guide…" autocomplete="off" aria-label="Search the guide" role="combobox" aria-expanded="false" aria-controls="searchResults">
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="btn-ghost-light" id="copyMd">Copy DESIGN.md</button>
+  <button class="btn-red" id="dlMd">Download .md</button>
+</header>
+
+<div class="layout">
+  <!-- ───────────────── side nav ───────────────── -->
+  <nav class="sidenav" id="sidenav">
+    <div class="grp">Foundations</div>
+    <a href="#overview">Overview</a>
+    <a href="#logo">Logo &amp; icon</a>
+    <a href="#voice">Brand voice</a>
+    <a href="#scannability">Scannability rules</a>
+    <a href="#color">Color</a>
+    <a href="#type">Typography</a>
+    <a href="#spacing">Spacing scale</a>
+    <a href="#radii">Radii &amp; borders</a>
+    <a href="#shadows">Shadows &amp; focus</a>
+    <div class="grp">Components</div>
+    <a href="#buttons">Buttons</a>
+    <a href="#accordion">Accordion</a>
+    <a href="#dropdown">Dropdown</a>
+    <a href="#chip">Filter chip</a>
+    <a href="#label">Label header</a>
+    <a href="#separator">Separator</a>
+    <a href="#lists">Lists</a>
+    <a href="#callout">Callout box</a>
+    <div class="grp">For agents</div>
+    <a href="#source">DESIGN.md source</a>
+  </nav>
+
+  <!-- ───────────────── content ───────────────── -->
+  <main class="content">
+
+    <!-- OVERVIEW -->
+    <section id="overview">
+      <div class="hero">
+        <h1>The friendly reviewer next door — written down.</h1>
+        <p class="lead">A living style guide rendered straight from <code style="color:#EFB5A9">REV_DESIGN.md</code>. Humans read the page; agents read the file. Same tokens, one source of truth.</p>
+        <div class="meta">
+          <span class="pill">Consumer Review Platform</span>
+          <span class="pill">Helpful · Conversational · Honest</span>
+          <span class="pill">51% mobile baseline</span>
+        </div>
+        <img class="markwm" src="assets/logo-mark-white.svg" alt="">
       </div>
-      <div class="search-results" id="searchResults"></div>
-    </div>
-  </div>
 
-  <div class="layout">
-    <aside class="sidebar">
-      <nav class="sidenav">
-        <a href="#introduction" class="active">Introduction</a>
-        <a href="#color-palette">Colors</a>
-        <a href="#typography">Typography</a>
-        <a href="#spacing">Spacing</a>
-        <a href="#components">Components</a>
-      </nav>
-    </aside>
+      <div class="dual">
+        <div class="card">
+          <h4><span class="tag" style="background:var(--blue-100);color:var(--blue-700)">YAML frontmatter</span> Machine-readable</h4>
+          <p>Tokens give agents exact values — every hex, size, radius and shadow. This is the half Stitch, Claude Code or Cursor ingest to stay on-brand without re-specifying anything.</p>
+        </div>
+        <div class="card">
+          <h4><span class="tag" style="background:var(--ared-100);color:var(--btn-primary)">Markdown body</span> Human-readable</h4>
+          <p>Prose tells you <em>why</em> the values exist and how to apply them — voice, scannability constraints, and component anatomy with full interaction states.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:18px;">Brand philosophy — Reviews.org reviews essential home services and tech with complete honesty and transparency, putting consumer advocacy over marketing rhetoric.</p>
+    </section>
 
-    <main class="content">
-      <section id="introduction">
-        <h1>Reviews.org Living Style Guide</h1>
-        <p>Welcome to the unified design token ecosystem and component specification repository.</p>
-      </section>
+    <!-- LOGO -->
+    <section id="logo">
+      <div class="eyebrow">Brand mark</div>
+      <h2 class="sec-title">Logo &amp; icon</h2>
+      <p class="sec-lead">The "R" mark and "reviews.org" wordmark. Pick the variant that fits the background — never recolor, redraw, or stretch. Click SVG or PNG to download that format.</p>
 
-      <section id="color-palette">
-        <h2>Design Tokens: Colors</h2>
-        <p>Semantic variables mapping to primitive values defined in <code>tokens.css</code>.</p>
-        <div class="token-grid" id="colorGrid"></div>
-      </section>
+      <h3 class="sub-title">Wordmark lockup</h3>
+      <div class="logo-grid">
+        <div class="logo-card">
+          <div class="logo-stage navy"><img class="wm" src="assets/logo-wordmark-light.svg" alt="Reviews.org wordmark, light"></div>
+          <div class="logo-meta"><div><div class="nm">Light</div><div class="use">Red mark + white type. Default for navy chrome &amp; dark surfaces.</div></div><div class="fn-row"><span class="fn" data-file="logo-wordmark-light.svg" title="logo-wordmark-light.svg">SVG</span><span class="fn" data-file="logo-wordmark-light@4x.png" title="logo-wordmark-light@4x.png">PNG</span></div></div>
+        </div>
+        <div class="logo-card">
+          <div class="logo-stage dark"><img class="wm" src="assets/logo-wordmark-dark.svg" alt="Reviews.org wordmark, dark"></div>
+          <div class="logo-meta"><div><div class="nm">Dark</div><div class="use">Red mark + navy type. Default for white &amp; light backgrounds.</div></div><div class="fn-row"><span class="fn" data-file="logo-wordmark-dark.svg" title="logo-wordmark-dark.svg">SVG</span><span class="fn" data-file="logo-wordmark-dark@4x.png" title="logo-wordmark-dark@4x.png">PNG</span></div></div>
+        </div>
+        <div class="logo-card">
+          <div class="logo-stage navy"><img class="wm" src="assets/logo-wordmark-white.svg" alt="Reviews.org wordmark, white"></div>
+          <div class="logo-meta"><div><div class="nm">White (mono)</div><div class="use">All-white. For photography &amp; busy or colored backgrounds.</div></div><div class="fn-row"><span class="fn" data-file="logo-wordmark-white.svg" title="logo-wordmark-white.svg">SVG</span><span class="fn" data-file="logo-wordmark-white@4x.png" title="logo-wordmark-white@4x.png">PNG</span></div></div>
+        </div>
+        <div class="logo-card">
+          <div class="logo-stage muted"><img class="wm" src="assets/logo-wordmark-dark.svg" alt="Reviews.org wordmark on muted"></div>
+          <div class="logo-meta"><div><div class="nm">On muted surface</div><div class="use">Dark lockup also clears on <span class="mono">bg.muted</span> cards.</div></div><div class="fn-row"><span class="fn" data-file="logo-wordmark-dark.svg" title="logo-wordmark-dark.svg">SVG</span><span class="fn" data-file="logo-wordmark-dark@4x.png" title="logo-wordmark-dark@4x.png">PNG</span></div></div>
+        </div>
+      </div>
 
-      <section id="typography">
-        <h2>Typography & Type Scales</h2>
-        <p>Headings are set in Work Sans, body text uses Rubik.</p>
-      </section>
-    </main>
-  </div>
+      <h3 class="sub-title">Icon mark</h3>
+      <div class="logo-grid icons">
+        <div class="logo-card">
+          <div class="logo-stage light"><img class="ic" src="assets/logo-icon-red.svg" alt="R mark, red"></div>
+          <div class="logo-meta"><div><div class="nm">Red</div><div class="use">Canonical. On white &amp; light.</div></div><div class="fn-row"><span class="fn" data-file="logo-icon-red.svg" title="logo-icon-red.svg">SVG</span><span class="fn" data-file="logo-icon-red@4x.png" title="logo-icon-red@4x.png">PNG</span></div></div>
+        </div>
+        <div class="logo-card">
+          <div class="logo-stage navy"><img class="ic" src="assets/logo-icon-white.svg" alt="R mark, white"></div>
+          <div class="logo-meta"><div><div class="nm">White</div><div class="use">For dark &amp; photo backgrounds.</div></div><div class="fn-row"><span class="fn" data-file="logo-icon-white.svg" title="logo-icon-white.svg">SVG</span><span class="fn" data-file="logo-icon-white@4x.png" title="logo-icon-white@4x.png">PNG</span></div></div>
+        </div>
+        <div class="logo-card">
+          <div class="logo-stage muted"><img class="ic" src="assets/logo-icon-red-blue-circle.svg" alt="R mark, red on navy circle"></div>
+          <div class="logo-meta"><div><div class="nm">Red in navy circle</div><div class="use">Avatar &amp; favicon shape.</div></div><div class="fn-row"><span class="fn" data-file="logo-icon-red-blue-circle.svg" title="logo-icon-red-blue-circle.svg">SVG</span><span class="fn" data-file="logo-icon-red-blue-circle@4x.png" title="logo-icon-red-blue-circle@4x.png">PNG</span></div></div>
+        </div>
+        <div class="logo-card">
+          <div class="logo-stage light"><img class="ic" src="assets/logo-icon-doodle.svg" alt="R mark, doodle"></div>
+          <div class="logo-meta"><div><div class="nm">Doodle</div><div class="use">Hand-drawn wink. Sparing use only.</div></div><div class="fn-row"><span class="fn" data-file="logo-icon-doodle.svg" title="logo-icon-doodle.svg">SVG</span><span class="fn" data-file="logo-icon-doodle@4x.png" title="logo-icon-doodle@4x.png">PNG</span></div></div>
+        </div>
+        <div class="logo-card">
+          <div class="logo-stage navy"><img class="ic" src="assets/logo-icon-doodle-white.svg" alt="R mark, doodle white outline"></div>
+          <div class="logo-meta"><div><div class="nm">Doodle white</div><div class="use">Doodle wink on dark surfaces.</div></div><div class="fn-row"><span class="fn" data-file="logo-icon-doodle-white.svg" title="logo-icon-doodle-white.svg">SVG</span><span class="fn" data-file="logo-icon-doodle-white@4x.png" title="logo-icon-doodle-white@4x.png">PNG</span></div></div>
+        </div>
+        <div class="logo-card">
+          <div class="logo-stage checker"><img class="ic" src="assets/logo-icon-red.svg" alt="R mark on transparency"></div>
+          <div class="logo-meta"><div><div class="nm">Transparent</div><div class="use">All marks ship on transparent SVG.</div></div><div class="fn-row"><span class="fn" data-file="logo-icon-red.svg" title="logo-icon-red.svg">SVG</span><span class="fn" data-file="logo-icon-red@4x.png" title="logo-icon-red@4x.png">PNG</span></div></div>
+        </div>
+      </div>
 
-  <script src="guide.js"></script>
+      <div class="logo-rules">
+        <div class="logo-rule do">
+          <h4>Do</h4>
+          <ul>
+            <li>Keep clear space of at least the mark's width on every side.</li>
+            <li>Pick the variant that maximizes contrast with the background.</li>
+            <li>Use the navy-circle icon for avatars and favicons.</li>
+          </ul>
+        </div>
+        <div class="logo-rule dont">
+          <h4>Don't</h4>
+          <ul>
+            <li>Recolor, add effects, or place the red mark on a clashing fill.</li>
+            <li>Stretch, rotate, or crop the mark or wordmark.</li>
+            <li>Overuse the doodle variant — it's an occasional wink, not the default.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOICE -->
+    <section id="voice">
+      <div class="eyebrow">Writing style</div>
+      <h2 class="sec-title">Brand voice</h2>
+      <p class="sec-lead">Conversational, direct, and straightforward — written to earn reader trust, not to sound like a brochure. Four dials set the default tone; pieces can dial in and out within range.</p>
+      <div class="dials" id="dials"></div>
+    </section>
+
+    <!-- SCANNABILITY -->
+    <section id="scannability">
+      <div class="eyebrow">Mobile-first</div>
+      <h2 class="sec-title">Scannability rules</h2>
+      <p class="sec-lead">More than half the audience browses on mobile, so front-end content blocks enforce strict scannability controls.</p>
+      <div class="scan-grid">
+        <div class="scan-card"><div class="big">250–550</div><h4>Words per content zone</h4><p>Segment content explicitly into focused packages.</p></div>
+        <div class="scan-card"><div class="big">≤20 / ≤5</div><h4>Words per sentence · sentences per paragraph</h4><p>Cap prose to keep blocks scannable.</p></div>
+        <div class="scan-card"><div class="big">3–12</div><h4>Words per bullet</h4><p>Concise list values, emphasizing clear utility.</p></div>
+        <div class="scan-card"><div class="big">Aa</div><h4>Deep typographic contrast</h4><p>Aggressive subheads, selective bolding, callouts &amp; clean tables.</p></div>
+      </div>
+    </section>
+
+    <!-- COLOR -->
+    <section id="color">
+      <div class="eyebrow">Primitives + semantic roles</div>
+      <h2 class="sec-title">Color</h2>
+      <p class="sec-lead">Friendly red for action, confident navy for chrome, soft neutrals for surfaces. Click any swatch to copy its hex.</p>
+
+      <h3 class="sub-title">Primitive ramps</h3>
+      <div id="ramps"></div>
+
+      <h3 class="sub-title">Semantic roles</h3>
+      <p class="note" style="margin-bottom:14px;">The tokens components actually reference. Click to copy the value.</p>
+      <div id="roles"></div>
+    </section>
+
+    <!-- TYPE -->
+    <section id="type">
+      <div class="eyebrow">Work Sans · Rubik · Caveat</div>
+      <h2 class="sec-title">Typography</h2>
+      <p class="sec-lead">Work Sans carries headings, Rubik carries body and UI, Caveat is the occasional creative wink.</p>
+
+      <div class="font-card">
+        <div class="font-head"><div><div class="label">Heading</div><div class="role-tag">Work Sans — display &amp; headings, 400–800</div></div><a class="gf-link" href="https://fonts.google.com/specimen/Work+Sans" target="_blank" rel="noopener">Get on Google Fonts ↗</a></div>
+        <div class="specimen" style="font-family:var(--font-heading);font-weight:800;">Fast enough to stream 4K on three TVs.</div>
+        <div class="glyphs" style="font-family:var(--font-heading);">AaBbCc 0123456789 — &amp; ? !</div>
+      </div>
+      <div class="font-card">
+        <div class="font-head"><div><div class="label">Body &amp; UI</div><div class="role-tag">Rubik — paragraphs, buttons, components, 400–700</div></div><a class="gf-link" href="https://fonts.google.com/specimen/Rubik" target="_blank" rel="noopener">Get on Google Fonts ↗</a></div>
+        <div class="specimen" style="font-family:var(--font-body);font-weight:500;">We got real answers on chat in under 4 minutes.</div>
+        <div class="glyphs" style="font-family:var(--font-body);">AaBbCc 0123456789 — &amp; ? !</div>
+      </div>
+      <div class="font-card">
+        <div class="font-head"><div><div class="label">Creative</div><div class="role-tag">Caveat — sparing handwritten accent</div></div><a class="gf-link" href="https://fonts.google.com/specimen/Caveat" target="_blank" rel="noopener">Get on Google Fonts ↗</a></div>
+        <div class="specimen" style="font-family:var(--font-creative);font-weight:700;font-size:54px;">amirite?</div>
+      </div>
+
+      <h3 class="sub-title">Weights</h3>
+      <div class="weights">
+        <div class="w"><div class="n" style="font-weight:400">Aa</div><div class="l">400 regular</div></div>
+        <div class="w"><div class="n" style="font-weight:500">Aa</div><div class="l">500 medium</div></div>
+        <div class="w"><div class="n" style="font-weight:600">Aa</div><div class="l">600 semibold</div></div>
+        <div class="w"><div class="n" style="font-weight:700">Aa</div><div class="l">700 bold</div></div>
+        <div class="w"><div class="n" style="font-weight:800">Aa</div><div class="l">800 extrabold</div></div>
+      </div>
+
+      <h3 class="sub-title">Type scale</h3>
+      <div class="type-scale" id="typescale"></div>
+    </section>
+
+    <!-- SPACING -->
+    <section id="spacing">
+      <div class="eyebrow">4px grid</div>
+      <h2 class="sec-title">Spacing scale</h2>
+      <p class="sec-lead">A doubling ladder on a 4px base drives padding, gaps, and layout rhythm.</p>
+      <div id="spacescale"></div>
+    </section>
+
+    <!-- RADII -->
+    <section id="radii">
+      <div class="eyebrow">Restrained corners</div>
+      <h2 class="sec-title">Radii &amp; borders</h2>
+      <p class="sec-lead">Buttons and chips stay tight; cards and modals get a little softer. Nothing in the system is a blob.</p>
+      <div class="tiles">
+        <div class="tile"><div class="box" style="border-radius:var(--radius-none)"></div><div class="cap"><b>none</b>0px</div></div>
+        <div class="tile"><div class="box" style="border-radius:var(--radius-inner)"></div><div class="cap"><b>inner</b>4px · buttons, chips</div></div>
+        <div class="tile"><div class="box" style="border-radius:var(--radius-outer)"></div><div class="cap"><b>outer</b>10px · cards, callouts</div></div>
+        <div class="tile"><div class="box" style="border-radius:var(--radius-outer-lg)"></div><div class="cap"><b>outer-lg</b>16px · modals</div></div>
+        <div class="tile"><div class="box" style="border-radius:48px"></div><div class="cap"><b>full</b>384px · pills</div></div>
+      </div>
+      <h3 class="sub-title">Border widths</h3>
+      <div class="tiles">
+        <div class="tile"><div class="box" style="border-width:var(--bw-subtle);border-color:var(--border-strong)"></div><div class="cap"><b>subtle</b>1px</div></div>
+        <div class="tile"><div class="box" style="border-width:var(--bw-default);border-color:var(--border-strong)"></div><div class="cap"><b>default</b>2px</div></div>
+        <div class="tile"><div class="box" style="border-width:var(--bw-emphasis);border-color:var(--border-strong)"></div><div class="cap"><b>emphasis</b>4px</div></div>
+      </div>
+    </section>
+
+    <!-- SHADOWS -->
+    <section id="shadows">
+      <div class="eyebrow">Elevation</div>
+      <h2 class="sec-title">Shadows &amp; focus</h2>
+      <p class="sec-lead">Four warm-neutral elevation steps — no colored shadows. Focus uses a four-corner brand ring.</p>
+      <div class="tiles">
+        <div class="tile"><div class="box" style="box-shadow:var(--shadow-low);border-color:transparent"></div><div class="cap"><b>low</b>resting cards</div></div>
+        <div class="tile"><div class="box" style="box-shadow:var(--shadow-medium);border-color:transparent"></div><div class="cap"><b>medium</b>buttons, bars</div></div>
+        <div class="tile"><div class="box" style="box-shadow:var(--shadow-high);border-color:transparent"></div><div class="cap"><b>high</b>popovers</div></div>
+        <div class="tile"><div class="box" style="box-shadow:var(--shadow-xhigh);border-color:transparent"></div><div class="cap"><b>xhigh</b>modals</div></div>
+      </div>
+      <h3 class="sub-title">Focus ring</h3>
+      <div class="tiles">
+        <div class="tile"><div class="box brand" style="box-shadow:var(--focus-brand);margin:4px"></div><div class="cap"><b>focus-brand</b>4-corner red ring</div></div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section id="buttons">
+      <div class="eyebrow">Component</div>
+      <h2 class="sec-title">Buttons</h2>
+      <p class="sec-lead">One primary action per section. Secondary and text buttons carry auxiliary choices. Tab to any button to see the focus ring; hover and press to watch the state shift.</p>
+
+      <h3 class="sub-title">Primary</h3>
+      <div class="demo">
+        <div class="stage">
+          <button class="rev-btn btn-primary">Check availability</button>
+          <button class="rev-btn btn-primary">Find my plan</button>
+          <button class="rev-btn btn-primary" disabled>Disabled</button>
+        </div>
+        <table class="state-table">
+          <tr><th>State</th><th>Background</th><th>Text</th><th>Notes</th></tr>
+          <tr><td>Default</td><td><span class="sw" style="background:var(--btn-primary)"></span><span class="tok">button.primary</span></td><td><span class="tok">text.body-on-dark</span></td><td>Standard CTA.</td></tr>
+          <tr><td>Hover</td><td><span class="sw" style="background:var(--btn-primary-hover)"></span><span class="tok">button.primary-hover</span></td><td><span class="tok">text.body-on-dark</span></td><td>Darkens to #822B17 · .15s.</td></tr>
+          <tr><td>Active</td><td><span class="sw" style="background:var(--btn-primary-active)"></span><span class="tok">accent_red.900</span></td><td><span class="tok">text.body-on-dark</span></td><td>Full-depth #561C10.</td></tr>
+          <tr><td>Disabled</td><td><span class="sw" style="background:var(--gray-400)"></span><span class="tok">gray.400</span></td><td><span class="tok">text.body-on-dark</span></td><td>Non-interactive.</td></tr>
+        </table>
+      </div>
+
+      <h3 class="sub-title">Secondary</h3>
+      <div class="demo">
+        <div class="stage">
+          <button class="rev-btn btn-secondary">Compare plans</button>
+          <button class="rev-btn btn-secondary">See all providers</button>
+          <button class="rev-btn btn-secondary" disabled>Disabled</button>
+        </div>
+        <table class="state-table">
+          <tr><th>State</th><th>Border</th><th>Text</th><th>Notes</th></tr>
+          <tr><td>Default</td><td><span class="sw" style="background:var(--border-btn-secondary)"></span><span class="tok">border.button-secondary</span></td><td><span class="tok">border.button-secondary</span></td><td>Red wire outline, white interior.</td></tr>
+          <tr><td>Hover</td><td><span class="sw" style="background:var(--border-btn-secondary-hover)"></span><span class="tok">…-secondary-hover</span></td><td><span class="tok">text.link-hover</span></td><td>.15s transition.</td></tr>
+          <tr><td>Active</td><td><span class="sw" style="background:var(--border-btn-secondary-hover)"></span><span class="tok">…-secondary-hover</span></td><td><span class="tok">text.link-hover</span></td><td>Fills brand tint #FBEFEB.</td></tr>
+          <tr><td>Disabled</td><td><span class="sw" style="background:var(--gray-400)"></span><span class="tok">gray.400</span></td><td><span class="tok">gray.400</span></td><td>Flattens to inactive box.</td></tr>
+        </table>
+      </div>
+
+      <h3 class="sub-title">Text</h3>
+      <div class="demo">
+        <div class="stage">
+          <button class="rev-btn btn-text">Read the full review →</button>
+          <button class="rev-btn btn-text">Skip for now</button>
+          <button class="rev-btn btn-text" disabled>Disabled</button>
+        </div>
+        <table class="state-table">
+          <tr><th>State</th><th>Text / icon</th><th>Notes</th></tr>
+          <tr><td>Default</td><td><span class="sw" style="background:var(--text-link)"></span><span class="tok">text.link</span></td><td>Containerless; keeps 44px touch padding.</td></tr>
+          <tr><td>Hover</td><td><span class="sw" style="background:var(--text-link-hover)"></span><span class="tok">text.link-hover</span></td><td>Color over .15s.</td></tr>
+          <tr><td>Active</td><td><span class="sw" style="background:var(--ared-900)"></span><span class="tok">accent_red.900</span></td><td>Deep #561C10.</td></tr>
+          <tr><td>Disabled</td><td><span class="sw" style="background:var(--gray-400)"></span><span class="tok">gray.400</span></td><td>#615E65.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ACCORDION -->
+    <section id="accordion">
+      <div class="eyebrow">Component</div>
+      <h2 class="sec-title">Accordion</h2>
+      <p class="sec-lead">Vertically expanding container for FAQ logs and regional summaries. Chevron points down when collapsed, up when open; hover tints the header red.</p>
+      <div class="demo">
+        <div class="stage col">
+          <div class="rev-acc" id="acc">
+            <div class="item open">
+              <button class="hd">Is the installation fee really waived?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="margin-left:auto"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="bd"><div class="inner">Yes — when you order online. Phone orders still get charged $99, so go online and skip the call.</div></div>
+            </div>
+            <div class="item">
+              <button class="hd">What speeds do I actually need?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="margin-left:auto"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="bd"><div class="inner">For a household streaming 4K on three TVs while two people game, 300 Mbps is the comfortable floor.</div></div>
+            </div>
+            <div class="item">
+              <button class="hd">Can I keep my own router?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="margin-left:auto"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="bd"><div class="inner">On most plans, yes — and you'll dodge the $15/mo. rental fee. Check the compatibility list first.</div></div>
+            </div>
+          </div>
+        </div>
+        <table class="state-table">
+          <tr><th>State</th><th>Header text</th><th>Notes</th></tr>
+          <tr><td>Collapsed</td><td><span class="sw" style="background:var(--text-heading)"></span><span class="tok">text.heading</span></td><td>Chevron down · 1px <span class="tok">border.muted</span> bottom rule.</td></tr>
+          <tr><td>Hover</td><td><span class="sw" style="background:var(--text-link)"></span><span class="tok">text.link</span></td><td>Header activates red accent.</td></tr>
+          <tr><td>Expanded</td><td><span class="sw" style="background:var(--text-heading)"></span><span class="tok">text.heading</span></td><td>Chevron up; body in <span class="tok">text.body</span>.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- DROPDOWN -->
+    <section id="dropdown">
+      <div class="eyebrow">Component</div>
+      <h2 class="sec-title">Dropdown</h2>
+      <p class="sec-lead">A trigger field with an optional float overlay. Focus applies the brand ring; the error variant swaps the outline to error red.</p>
+      <div class="demo">
+        <div class="stage" style="gap:34px;align-items:flex-start;">
+          <div>
+            <div class="note" style="margin-bottom:6px;">Default</div>
+            <select class="rev-dd"><option>Choose your state…</option><option>Utah</option><option>Texas</option><option>New York</option></select>
+          </div>
+          <div>
+            <div class="note" style="margin-bottom:6px;">Error</div>
+            <select class="rev-dd err"><option>Choose your state…</option><option>Utah</option><option>Texas</option></select>
+            <div class="dd-err-label">Please select a state to see plans.</div>
+          </div>
+        </div>
+        <table class="state-table">
+          <tr><th>State</th><th>Border</th><th>Notes</th></tr>
+          <tr><td>Default / Hover</td><td><span class="sw" style="background:var(--border-default)"></span><span class="tok">border.default</span></td><td>No visual change on hover.</td></tr>
+          <tr><td>Focus</td><td><span class="sw" style="background:var(--btn-primary)"></span><span class="tok">effects.focus-brand</span></td><td>Four-corner red ring.</td></tr>
+          <tr><td>Error</td><td><span class="sw" style="background:var(--border-error)"></span><span class="tok">border.error</span></td><td>Validation label in error token.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- FILTER CHIP -->
+    <section id="chip">
+      <div class="eyebrow">Component</div>
+      <h2 class="sec-title">Filter chip</h2>
+      <p class="sec-lead">Compact selector pill for rapid filtering, tuned for mobile taps. Rows enforce a 12px gutter; labels truncate at 20 characters. Click to toggle selected.</p>
+      <div class="demo">
+        <div class="stage" style="gap:12px;">
+          <button class="rev-chip">Internet</button>
+          <button class="rev-chip sel">Mobile</button>
+          <button class="rev-chip">TV</button>
+          <button class="rev-chip">Home security</button>
+        </div>
+        <table class="state-table">
+          <tr><th>State</th><th>Background</th><th>Border</th><th>Text</th></tr>
+          <tr><td>Default</td><td><span class="sw" style="background:#fff"></span><span class="tok">background.default</span></td><td><span class="sw" style="background:var(--border-brand)"></span><span class="tok">border.brand</span></td><td><span class="tok">text.heading</span></td></tr>
+          <tr><td>Hover</td><td><span class="sw" style="background:#fff"></span><span class="tok">background.default</span></td><td><span class="sw" style="background:var(--border-default-active)"></span><span class="tok">border.default-active</span></td><td><span class="tok">text.heading</span></td></tr>
+          <tr><td>Selected</td><td><span class="sw" style="background:var(--bg-default-active)"></span><span class="tok">background.default-active</span></td><td><span class="sw" style="background:var(--border-default-active)"></span><span class="tok">border.default-active</span></td><td><span class="tok">text.heading</span></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- LABEL -->
+    <section id="label">
+      <div class="eyebrow">Component</div>
+      <h2 class="sec-title">Label header</h2>
+      <p class="sec-lead">A container header that flags a status or attribute. Radius is restricted to the top corners so it caps a content block cleanly.</p>
+      <div class="demo">
+        <div class="stage" style="gap:30px;align-items:flex-start;">
+          <div>
+            <div class="rev-label def"><img src="assets/star-full.svg" width="18" style="color:var(--yellow-500)" alt="">Best overall value</div>
+            <div class="label-body">Default variant — light header with neutral body text.</div>
+          </div>
+          <div>
+            <div class="rev-label hi"><img src="assets/logo-mark-white.svg" width="16" alt="">Editor's pick</div>
+            <div class="label-body">Highlighted variant — high-contrast navy header, white text.</div>
+          </div>
+        </div>
+        <table class="state-table">
+          <tr><th>Variant</th><th>Background</th><th>Text / icon</th></tr>
+          <tr><td>Default</td><td><span class="sw" style="background:var(--bg-muted)"></span><span class="tok">background.muted</span></td><td><span class="tok">text.body</span></td></tr>
+          <tr><td>Highlighted</td><td><span class="sw" style="background:var(--bg-brand-dark)"></span><span class="tok">background.brand-dark</span></td><td><span class="tok">text.body-on-dark</span></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- SEPARATOR -->
+    <section id="separator">
+      <div class="eyebrow">Component</div>
+      <h2 class="sec-title">Separator</h2>
+      <p class="sec-lead">A 1px rule to divide content. Two contrast levels for two jobs.</p>
+      <div class="demo">
+        <div class="stage col" style="gap:26px;">
+          <div><div class="note" style="margin-bottom:8px;">Muted — minor list breaks</div><div class="sep muted"></div></div>
+          <div><div class="note" style="margin-bottom:8px;">Default — regional / zone breaks</div><div class="sep def"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LISTS -->
+    <section id="lists">
+      <div class="eyebrow">Component</div>
+      <h2 class="sec-title">Lists</h2>
+      <p class="sec-lead">Built for rapid comparison. Bullets stay short — 3 to 12 words — focused on value, not prose.</p>
+
+      <div class="dual" style="grid-template-columns:1fr 1fr;">
+        <div class="demo" style="margin:0;"><div class="stage col"><div class="note" style="margin-bottom:4px;">Pro / Con</div>
+          <ul class="rev-list">
+            <li><span class="ic pro">✓</span>No data caps on any plan</li>
+            <li><span class="ic pro">✓</span>Free pro install when ordered online</li>
+            <li><span class="ic con">–</span>Price jumps after 12 months</li>
+            <li><span class="ic con">–</span>Phone support runs slow</li>
+          </ul>
+        </div></div>
+        <div class="demo" style="margin:0;"><div class="stage col"><div class="note" style="margin-bottom:4px;">Info / spec (divided)</div>
+          <ul class="rev-list spec divided">
+            <li><span class="k">Top speed</span><span class="v">940 Mbps</span></li>
+            <li><span class="k">Starting price</span><span class="v">$50/mo.</span></li>
+            <li><span class="k">Contract</span><span class="v">None</span></li>
+            <li><span class="k">Data cap</span><span class="v">Unlimited</span></li>
+          </ul>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- CALLOUT -->
+    <section id="callout">
+      <div class="eyebrow">Component</div>
+      <h2 class="sec-title">Callout box</h2>
+      <p class="sec-lead">A 1–6 item grid highlighting verticals or features side-by-side. Containers can be outline, solid fill, or shadowed.</p>
+      <div class="demo">
+        <div class="stage">
+          <div class="callout-grid">
+            <div class="callout outline">
+              <div class="ci"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12" y2="20"/></svg></div>
+              <h4>Internet</h4>
+              <p>Fiber, cable, and 5G home plans compared by real ZIP.</p>
+              <a href="#callout">See top picks →</a>
+            </div>
+            <div class="callout fill">
+              <div class="ci" style="background:rgba(12,17,60,0.08);color:var(--blue-900)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div>
+              <h4>Mobile</h4>
+              <p>Carrier coverage and plan value, tested in the field.</p>
+              <a href="#callout">Compare carriers →</a>
+            </div>
+            <div class="callout shadow">
+              <div class="ci"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <h4>Home security</h4>
+              <p>Pro-install and DIY systems, rated on real response.</p>
+              <a href="#callout">Find a system →</a>
+            </div>
+          </div>
+        </div>
+        <table class="state-table">
+          <tr><th>Element</th><th>Token / rule</th><th>Behavior</th></tr>
+          <tr><td>Icon</td><td>46px asset · 64px wrapper</td><td>May overlap or sit inside the border.</td></tr>
+          <tr><td>Heading</td><td><span class="tok">font.heading</span> · H3</td><td>Center-aligned in card.</td></tr>
+          <tr><td>Body</td><td><span class="tok">font.body</span> · P-default</td><td>Left-aligned for symmetry.</td></tr>
+          <tr><td>Container</td><td><span class="tok">radius.outer</span> 10px · <span class="tok">shadow.medium</span></td><td>Outline / fill / shadow variants.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- SOURCE -->
+    <section id="source">
+      <div class="eyebrow">For agents</div>
+      <h2 class="sec-title">DESIGN.md source</h2>
+      <p class="sec-lead">The machine-readable half. This exact file is what an agent (Stitch, Claude Code, Cursor) ingests — and what everything above is rendered from.</p>
+      <div class="src-wrap">
+        <div class="src-head">
+          <span class="fn">REV_DESIGN.md</span>
+          <span class="spacer"></span>
+          <button id="copyMd2">Copy</button>
+          <button id="dlMd2">Download</button>
+        </div>
+        <pre class="src-body" id="srcBody"></pre>
+      </div>
+      <div class="lint">
+        <div class="ok">✓</div>
+        <div>
+          <p style="font-weight:600;color:var(--text-heading);font-family:var(--font-heading);">Validate it against the spec</p>
+          <p class="note" style="margin-top:4px;">Run <code>npx @google/design.md lint REV_DESIGN.md</code> to check structure, broken token references, and WCAG contrast — exit code 1 on errors, 0 otherwise.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Reviews.org Style Guide · rendered from <code>REV_DESIGN.md</code> (Google Stitch DESIGN.md format, Apache-2.0). Tokens and prose stay in sync because the page is built from the file.
+</footer>
+
+<!-- raw DESIGN.md payload -->
+<script type="text/plain" id="design-md-src">
+---
+brand:
+  name: "Reviews.org"
+  tier: "Consumer Review Platform"
+  philosophy: "The friendly reviewer next door. Focuses on reviewing essential home services and tech products with complete honesty and transparency, putting consumer advocacy over marketing rhetoric."
+  mobile_priority_metric: "51% mobile user baseline (requires chunked text layouts, rapid readability, and strict scannability constraints)."
+
+primitives:
+  fonts:
+    first: "Work Sans"
+    second: "Rubik"
+    third: "Caveat"
+  weights:
+    extralight: 100
+    light: 200
+    thin: 300
+    normal: 400
+    medium: 500
+    semibold: 600
+    bold: 700
+    extrabold: 800
+    black: 900
+  sizes:
+    "0": 0
+    "0.25": 1
+    "0.5": 2
+    "1": 4
+    "1.5": 6
+    "2": 8
+    "2.5": 10
+    "3": 12
+    "3.5": 14
+    "4": 16
+    "4.5": 18
+    "5": 20
+    "6": 24
+    "7": 28
+    "8": 32
+    "9": 36
+    "10": 40
+    "11": 44
+    "12": 48
+    "14": 56
+    "16": 64
+    "20": 80
+    "24": 96
+    "28": 112
+    "32": 128
+    "36": 144
+    "40": 160
+    "44": 176
+    "48": 192
+    "52": 208
+    "56": 224
+    "60": 240
+    "64": 256
+    "72": 288
+    "80": 320
+    "96": 384
+  colors:
+    brand_blue:
+      "100": "#EBF2FD"
+      "200": "#DAE7FC"
+      "300": "#BDD4F9"
+      "400": "#8BB4F6"
+      "500": "#568EF5"
+      "600": "#315FE7"
+      "700": "#223EA2"
+      "800": "#172469"
+      "900": "#0C113C"
+    accent_red:
+      "100": "#FBEFEB"
+      "200": "#F7DAD4"
+      "300": "#EFB5A9"
+      "400": "#E8917D"
+      "500": "#E06C52"
+      "600": "#D84727"
+      "700": "#AD391F"
+      "800": "#822B17"
+      "900": "#561C10"
+    gray:
+      "050": "#F9F9FA"
+      "100": "#F3F3F4"
+      "150": "#E8E7E9"
+      "200": "#DCDBDE"
+      "250": "#C5C3C8"
+      "300": "#AEAAB1"
+      "350": "#8B8690"
+      "400": "#615E65"
+      "450": "#464348"
+      "500": "#2A282B"
+      "550": "#0E0D0E"
+    white:
+      "1000": "#FFFFFF"
+    red:
+      "100": "#FFF2F0"
+      "200": "#FFDCD8"
+      "300": "#FFA79D"
+      "400": "#FF7B70"
+      "500": "#FD413D"
+      "600": "#E11420"
+      "700": "#BE0014"
+      "800": "#8D000C"
+      "900": "#5D0005"
+    green:
+      "100": "#E9FBF4"
+      "200": "#BDF2DD"
+      "300": "#91E9C6"
+      "400": "#64E0AF"
+      "500": "#22D38C"
+      "600": "#1BA970"
+      "700": "#147F54"
+      "800": "#0E5438"
+      "900": "#072A1C"
+    yellow:
+      "100": "#FEF4E8"
+      "200": "#FEEFDD"
+      "300": "#FDDFBB"
+      "400": "#FBCA8E"
+      "500": "#FEB24D"
+      "600": "#F7941D"
+      "700": "#C67617"
+      "800": "#7C4A0F"
+      "900": "#4A2C09"
+
+colors:
+  text:
+    heading: "#0E0D0E"
+    heading-on-dark: "#FFFFFF"
+    body: "#464348"
+    body-on-dark: "#FFFFFF"
+    body-alt: "#615E65"
+    body-alt-on-dark: "rgba(255, 255, 255, 0.95)"
+    muted: "#8B8690"
+    muted-on-dark: "rgba(255, 255, 255, 0.9)"
+    link: "#D84727"
+    link-hover: "#822B17"
+    link-on-dark: "#EFB5A9"
+    link-on-dark-hover: "#E8917D"
+    error: "#E11420"
+    error-on-dark: "#FFDCD8"
+    success: "#1BA970"
+    success-on-dark: "#E9FBF4"
+  background:
+    default: "#FFFFFF"
+    default-active: "#EBF2FD"
+    default-hover: "#BDD4F9"
+    brand: "#0C113C"
+    brand-light: "#DAE7FC"
+    brand-dark: "#0C113C"
+    strong: "#2A282B"
+    muted: "#F9F9FA"
+    success: "#1BA970"
+    error: "#E11420"
+  button:
+    primary: "#D84727"
+    primary-hover: "#822B17"
+    primary-active: "#561C10"
+    secondary: "#FFFFFF"
+    secondary-hover: "#FBEFEB"
+  border:
+    default: "#DCDBDE"
+    default-active: "#568EF5"
+    brand: "#0C113C"
+    brand-light: "#315FE7"
+    brand-dark: "#0C113C"
+    muted: "#E8E7E9"
+    strong: "#464348"
+    success: "#22D38C"
+    error: "#E11420"
+    button-secondary: "#D84727"
+    button-secondary-hover: "#AD391F"
+
+typography:
+  families:
+    heading: "Work Sans"
+    body: "Rubik"
+    creative: "Caveat"
+  weights:
+    regular: 400
+    medium: 500
+    semibold: 600
+    bold: 700
+
+borders:
+  radius:
+    none: "0px"
+    inner: "4px"
+    outer: "10px"
+    outer-lg: "16px"
+    full: "384px"
+  width:
+    subtle: "1px"
+    default: "2px"
+    emphasis: "4px"
+
+shadows:
+  flat: "none"
+  low: "0px -1px 2px rgba(0, 0, 0, 0.04), 0px 2px 4px rgba(0, 0, 0, 0.16)"
+  medium: "0px -1px 4px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.16)"
+  high: "0px -1px 6px rgba(0, 0, 0, 0.04), 0px 12px 24px rgba(0, 0, 0, 0.24)"
+  xhigh: "0px -1px 8px rgba(0, 0, 0, 0.04), 0px 24px 32px rgba(0, 0, 0, 0.56)"
+
+effects:
+  focus-brand: "box-shadow: -2px -2px 0 0 #D84727, 2px 2px 0 0 #D84727, -2px 2px 0 0 #D84727, 2px -2px 0 0 #D84727;"
+---
+
+# Reviews.org Design System Body
+
+## Brand Overview & Writing Style Guidelines
+
+### Core Brand Identity
+[cite_start]Reviews.org serves as an authentic consumer guide, delivering conversational, direct, and straightforward home service reviews[cite: 116, 119]. [cite_start]The writing tone avoids traditional corporate marketing rhetoric to ensure maximum reader trust[cite: 120, 153].
+
+### Dimensions of Voice
+* [cite_start]**Funny vs. Serious:** Lighthearted and highly entertaining, using everyday language and relatable cultural markers to diffuse technical topics[cite: 242, 243].
+* [cite_start]**Formal vs. Casual:** Highly conversational[cite: 246]. [cite_start]The use of plain idioms, casual syntax, and contractions is fully authorized across web surfaces, Titling, and UI blocks[cite: 247, 248].
+* [cite_start]**Respectful vs. Irreverent:** Laid back, yet completely solution-oriented[cite: 253]. [cite_start]Friendly humor must never disrupt the straightforward delivery of clear answers[cite: 254].
+* [cite_start]**Enthusiastic vs. Matter-of-Fact:** Energetic, clear, and opinionated[cite: 259, 262]. [cite_start]Avoid passive balancing loops; take a definitive editorial stand to assist user confidence[cite: 262].
+
+### Web Content Scannability Rules (Mobile-First Optimization)
+[cite_start]Given that more than half of the user baseline browse via mobile devices, front-end content blocks must implement strict scannability controls[cite: 189, 191]:
+* [cite_start]**Layout Segmentation:** Segment content zones explicitly into focused packages of 250 to 550 words[cite: 194, 195].
+* [cite_start]**Sentence Length Limits:** Maximize readability by capping prose blocks at 20 words per single sentence and 5 sentences per layout paragraph[cite: 197].
+* [cite_start]**Bullet Structures:** Bulleted list values must be concise (3 to 12 words per list element), emphasizing clear utility[cite: 198, 199].
+* [cite_start]**Scannable Element Contrast:** Deploy deep typographical contrast via aggressive subheads, selective bolding, callouts, and clean evaluation tables to support rapid user scanning[cite: 200, 201, 202].
+
+---
+
+## Component Specifications
+
+## Primary Button
+
+### Rationale
+[cite_start]The main CTA button site-wide[cite: 103]. Used for the primary action users should take on a page to move effectively through the conversion funnel.
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik), `typography.weights.semibold` (600)
+* **Border Radius:** `borders.radius.inner` (4px)
+* **Padding (Medium/Default):** 12px Vertical / 16px Horizontal (maps directly to fixed component layouts)
+
+### Interaction States
+
+| State | Background Color Token | Text Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- |
+| **Default** | `colors.button.primary` | `colors.text.body-on-dark` | Standard presentation state. |
+| **Hover** | `colors.button.primary-hover` | `colors.text.body-on-dark` | Background darkens to `#822B17`. Transition: .15s. |
+| **Focus** | `colors.button.primary-hover` | `colors.text.body-on-dark` | Triggers browser-native focus-ring configuration. |
+| **Active (Pressed)**| `primitives.colors.accent_red.900` | `colors.text.body-on-dark` | Full depth state (`#561C10`). |
+| **Disabled** | `primitives.colors.gray.400` | `colors.text.body-on-dark` | Inactive, non-interactive visual state (`#615E65`). |
+
+---
+
+## Secondary Button
+
+### Rationale
+[cite_start]The secondary CTA button site-wide[cite: 1080]. Used for auxiliary user options or multi-choice comparison matrix blocks.
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik), `typography.weights.semibold` (600)
+* **Border:** `borders.width.default` (2px solid wire outline configuration)
+* **Border Radius:** `borders.radius.inner` (4px)
+* **Padding (Medium/Default):** 12px Vertical / 16px Horizontal
+* [cite_start]**CMS Integration:** Text string and optional underlying description line are exposed to the publishing workflow for manual disclaimers[cite: 1102].
+
+### Interaction States
+
+| State | Background Color Token | Border Color Token | Text Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Default** | `colors.button.secondary` | `colors.border.button-secondary` | `colors.border.button-secondary` | Clear interior surface, red line layout. |
+| **Hover** | `colors.button.secondary` | `colors.border.button-secondary-hover` | `colors.text.link-hover` | Animation timing: .15s. |
+| **Focus** | `colors.button.secondary` | `colors.border.button-secondary-hover` | `colors.text.link-hover` | Activates native focus system outline. |
+| **Active (Pressed)** | `colors.button.secondary-hover` | `colors.border.button-secondary-hover` | `colors.text.link-hover` | Shifts background to smooth brand tint (`#FBEFEB`). |
+| **Disabled** | `primitives.colors.gray.400` | `primitives.colors.gray.400` | `colors.text.body-on-dark` | Outlined elements flatten into an inactive box layer. |
+
+---
+
+## Text Button
+
+### Rationale
+[cite_start]A minimal, lower-emphasis inline or structural action indicator that shows text without a bounding container layer[cite: 1108].
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik), `typography.weights.semibold` (600)
+* **Padding:** 12px Vertical / 16px Horizontal (Maintains active touch padding dimensions to safeguard mobile hit areas).
+* **Internal Gap:** `primitives.sizes.0.5` (4px layout gap constraint)
+* **CMS Integration:** Core string fully editable by platform publishers.
+
+### Interaction States
+
+| State | Background Color Token | Text / Icon Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- |
+| **Default** | `transparent` | `colors.text.link` | Minimal containerless form. |
+| **Hover** | `transparent` | `colors.text.link-hover` | Color updates over .15s animation curve. |
+| **Focus** | `transparent` | `colors.text.link-hover` | Shows system structural outline box area. |
+| **Active (Pressed)** | `transparent` | `primitives.colors.accent_red.900` | Text shifts down to base deep state shade (`#561C10`). |
+| **Disabled** | `transparent` | `primitives.colors.gray.400` | text string changes to color `#615E65`. |
+
+---
+
+## Accordion
+
+### Rationale
+[cite_start]A vertically expanding accordion structure used to structure and wrap detailed informative items like FAQ logs or localized regional summaries[cite: 1130].
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik), Label: Semibold (600), Body Content text: Regular (400).
+* **Border Mapping:** `borders.width.subtle` (1px solid structure applied to the item bottom layout edge only)
+* **Layout Variations:**
+    * *Default Style:* Navigation indicator chevron sits to the immediate left of the item header text string.
+    * *Compact Style:* Navigation chevron gets pushed flush against the right-side container layout border.
+* [cite_start]**Core CMS Constraint:** Publishers define header and target inner body text parameters[cite: 1131]. Code architecture allows string content only inside body spaces.
+
+### Interaction States
+
+| State | Background Color Token | Border Color Token | Text & Icon Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Default (Collapsed)** | `transparent` | `colors.border.muted` | `colors.text.heading` | Chevron indicator points down. |
+| **Hover (Collapsed)** | `transparent` | `colors.border.muted` | `colors.text.link` | Header elements activate red accent state tracking. |
+| **Active (Expanded)** | `transparent` | `colors.border.muted` | `colors.text.heading` | Chevron points up. Body displays text via `colors.text.body`. |
+| **Focus** | `transparent` | `colors.border.muted` | `primitives.colors.accent_red.700` | Label drops one shade darker than hover selection (`#AD391F`). |
+
+---
+
+## Dropdown
+
+### Rationale
+[cite_start]An interactive multi-state selector block composed of a trigger button field and an optional float overlay choice layer[cite: 1155, 1191].
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik).
+* **Border Architecture:** `borders.radius.inner` (4px), `borders.width.subtle` (1px structure)
+* [cite_start]**Implementation Rules:** Renders default browser picker styling elements unless the custom floating popover overlay is requested[cite: 1191]. [cite_start]Optional label slots available for form context guidance[cite: 1156].
+
+### Interaction States: Dropdown Button (Trigger)
+
+| State | Background Color Token | Border Color Token | Text Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Default** | `colors.bg-content.default` | `colors.border.default` | `colors.text.body` | Standard form setup presentation. |
+| **Hover** | `colors.bg-content.default` | `colors.border.default` | `colors.text.body` | Maintained flush with no visual variation from default. |
+| **Active / Focus** | `colors.bg-content.default` | `colors.border.default` | `colors.text.body` | Applies global `effects.focus-brand` thick ring shadow style. |
+| **Error** | `colors.bg-content.default` | `colors.border.error` | `colors.text.body` | [cite_start]Field outline uses error red; validation label shows error token[cite: 1168]. |
+
+---
+
+## Filter Chip
+
+### Rationale
+[cite_start]A compact selector pill used for rapid page data filtering or layout switching, optimized heavily for mobile tap sequences[cite: 1208, 1209].
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik)
+* **Padding:** 10px uniform layout bounds (`space.padding-fixed.xsm`)
+* **Internal Gap:** `primitives.sizes.0.5` (4px layout gap constraint)
+* **Border Definition:** `borders.width.default` (2px), `borders.radius.outer` (10px pill styling)
+* **Front-End Layout Rules:** Flex row configurations must impose an explicit **12px item gutter**. Labels must enforce text truncation rules at a **20-character maximum cap**.
+
+### Interaction States
+
+| State | Background Color Token | Border Color Token | Text Color Token | Structural Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Default** | `colors.background.default` | `colors.border.brand` | `colors.text.heading` | Standard inactive tracking view. |
+| **Hover** | `colors.background.default` | `colors.border.default-active` | `colors.text.heading` | Border color transitions to match the selected layout state line color. |
+| **Focus** | `colors.background.default` | `primitives.colors.brand_blue.600` | `colors.text.heading` | Border drops one primitive step darker than hover selection (`#315FE7`). |
+| **Selected** | `colors.background.default-active` | `colors.border.default-active` | `colors.text.heading` | Activated target state profile. |
+
+---
+
+## Label (Container Header)
+
+### Rationale
+[cite_start]Used to highlight a specific status or attribute of an item or content zone[cite: 1223]. [cite_start]They provide brief, scannable information that helps users identify key items or make quick choices without cluttering body text spaces[cite: 1224].
+
+### Anatomy & Spacing
+* **Typography:** `typography.families.body` (Rubik), bold (700) configuration for standard labels.
+* **Width:** 356px baseline structure.
+* **Padding:** `space.padding-fixed.md` (22px uniform layout cushioning on all boundaries).
+* **Gap:** `space.gap-fixed.xs` (8px interior horizontal flex gap element).
+* **Border Radius:** `borders.radius.outer` (10px) restricted explicitly to the **top-left** and **top-right** quadrants (`10px 10px 0 0`).
+* **CMS & Asset Behavior:** Publishers can explicitly edit label text strings and switch the container wrapper status between "Default" and "Highlighted" layout variants.
+* **Badge & Icon Support:** Includes an optional media container asset lane where a publisher can upload a primary icon/badge image file.
+
+### Variant States
+
+| Variant Style | Background Color Token | Text / Icon Color Token | Structural Execution Notes |
+| :--- | :--- | :--- | :--- |
+| **Default** | `colors.background.muted` | `colors.text.body` | Light layout header variant (`#F9F9FA`) with neutral body text selection (`#464348`). |
+| **Highlighted** | `colors.background.brand-dark` | `colors.text.body-on-dark` | High-contrast brand layout configuration (`#0C113C`) utilizing true white overlay elements (`#FFFFFF`). |
+
+---
+
+## Separator
+
+### Rationale
+[cite_start]A thin visual rule used to divide and organize content within a layout[cite: 1237]. [cite_start]Use it to create a clear distinction between separate sections of content, such as items in a list or distinct UI regions[cite: 1238].
+
+### Anatomy & Spacing
+* **Height / Thickness:** `borders.width.subtle` (1px execution)
+* **Width:** 100% of the parent container baseline space.
+
+### Structural Variants
+
+| Variant Type | Stroke Color Token | Rationale & Usage |
+| :--- | :--- | :--- |
+| **Muted (Subtle)** | `colors.border.muted` | A low-contrast divider (`#E8E7E9`) used for minor list-item breakouts or soft secondary breaks. |
+| **Default** | `colors.border.default` | The standard border color (`#DCDBDE`) used to isolate higher-level regional blocks or content zones. |
+
+---
+
+## List & List Item
+
+### Rationale
+[cite_start]Used to organize and display related items in a structured format, with explicit stylistic variations optimized for rapid visual comparisons (pro/con analysis, spec highlights, or bullet points)[cite: 1251, 1252].
+
+### Anatomy & Editorial Constraints
+* **Typography:** `typography.families.body` (Rubik).
+* [cite_start]**Scannability Rule:** To match the brand guidelines, listed bullet elements should be kept short (ideally **3 to 12 words**), focusing entirely on concise value delivery[cite: 199].
+
+### Structural Variants
+
+| Variant Type | Visual/Token Mapping | Implementation Notes |
+| :--- | :--- | :--- |
+| **Info / Spec List** | [cite_start]**Label:** `colors.text.body`<br>**Value:** `colors.text.heading`, bold (700) [cite: 1243] | Two-column inline configuration. [cite_start]Ideal for displaying tabular package features side by side[cite: 1243, 1244, 1245]. |
+| **Standard Icon List** | **Icon:** `colors.text.heading`<br>**Text:** Bold string prefix + Regular body text | General purpose list item with strong typography contrast. |
+| **Pro List Item** | [cite_start]**Icon:** Green circle check (`colors.success` / `#1BA970`) [cite: 609]<br>**Text:** `colors.text.body` | [cite_start]Used to validate high-value features or benefits cleanly[cite: 1248]. |
+| **Con List Item** | [cite_start]**Icon:** Red circle minus (`colors.error` / `#E11420`) [cite: 619]<br>**Text:** `colors.text.body` | [cite_start]Used to address negatives transparently without losing a helpful tone[cite: 1249]. |
+| **Divided Variant** | Integrates an underlying rule via `borders.width.subtle` (1px) and `colors.border.muted` | Can be combined with any list item type above to create row separation. |
+
+---
+
+## Callout Box Icon List
+
+### Rationale
+[cite_start]A multi-item promotional or navigational grid layout used to highlight product features, service verticals, or curated ecosystem choices side-by-side with high structural emphasis[cite: 1312].
+
+### Anatomy & Layout Options
+* [cite_start]**Grid Capacity:** 1 to 6 items maximum per block instance[cite: 1318].
+* [cite_start]**Desktop Layout:** Items expand horizontally in a single fluid row configuration[cite: 1319].
+* [cite_start]**Mobile Layout:** Supports fallback settings for vertical stacking (inline) or a balanced 2-up responsive matrix grid[cite: 1320].
+* [cite_start]**Container Variations:** The underlying card box can be configured as a **Color Outline** or a solid **Color Fill**, with or without a global drop shadow[cite: 1322, 1323, 1324].
+* [cite_start]**Border Radius:** `borders.radius.outer` (10px) applied uniformly[cite: 1325].
+* [cite_start]**Elevation Ring:** Configured to trigger `shadows.medium` if drop shadows are active[cite: 1361].
+* [cite_start]**Alignment controls:** Platform publishers can change layout alignment rules globally between left, center, or right[cite: 1326].
+
+### Sub-Element Token Mappings
+
+| Element Item | Typography / Token Rule | Behavior & CMS Rules |
+| :--- | :--- | :--- |
+| **1. Callout Icon** | [cite_start]Core asset: 46x46px<br>Wrapper layer: 64x64px [cite: 1353] | [cite_start]Designers can configure the illustration style to visually overlap the box border boundaries or sit completely inside the padding lines[cite: 1321]. |
+| **2. Heading Text** | [cite_start]`typography.families.heading` (Work Sans)<br>Style matches **H3** values [cite: 1354, 1355] | [cite_start]Center-aligned by default within the card frame[cite: 1358]. |
+| **3. Body Text** | [cite_start]`typography.families.body` (Rubik)<br>Style matches **P-default** [cite: 1356] | Left-aligned by default within the core block frame to maintain layout symmetry. |
+| **4. Link Text** | [cite_start]`colors.text.link`<br>Style matches **P-default** [cite: 1357] | Primary inline link styling; center-aligned below the summary text block. |
+| **5. CTA Button** | [cite_start]Fully maps to the **Primary Button** or **Secondary Button** component template [cite: 1359] | Set to medium button heights (`space.padding-fixed.button.md`) and center-aligned. |
+</script>
+<script src="assets/guide.js"></script>
 </body>
-</html>
