@@ -4,6 +4,29 @@
 (function () {
   'use strict';
 
+  /* ---------- copy-confirmation toast ---------- */
+  var toastEl, toastTimer;
+  function showToast(value, kind) {
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.className = 'copy-toast';
+      document.body.appendChild(toastEl);
+    }
+    if (kind === 'download') {
+      toastEl.innerHTML = 'Downloading <b>' + value + '</b>…';
+    } else if (kind === 'file') {
+      toastEl.innerHTML = 'Filename <b>' + value + '</b> has been copied!';
+    } else {
+      toastEl.innerHTML = 'Hexcode <b>' + value.toUpperCase() + '</b> has been copied!';
+    }
+    // restart the animation cleanly
+    toastEl.classList.remove('show');
+    void toastEl.offsetWidth;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 2200);
+  }
+
   /* ---------- raw DESIGN.md → source view + copy/download ---------- */
   var raw = (document.getElementById('design-md-src') || {}).textContent || '';
   raw = raw.replace(/^\s+|\s+$/g, '');
@@ -81,11 +104,35 @@
     var r = parseInt(c.substr(0, 2), 16), g = parseInt(c.substr(2, 2), 16), b = parseInt(c.substr(4, 2), 16);
     return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   }
+  function legacyCopy(txt) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, txt.length);
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
   function copyText(txt, node) {
-    navigator.clipboard && navigator.clipboard.writeText(txt).then(function () {
+    // visual + toast feedback always fires, regardless of clipboard permission
+    function feedback() {
       node.classList.add('copied');
       setTimeout(function () { node.classList.remove('copied'); }, 900);
-    });
+      showToast(txt);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(feedback, function () {
+        legacyCopy(txt); feedback();
+      });
+    } else {
+      legacyCopy(txt); feedback();
+    }
   }
   var rampsEl = document.getElementById('ramps');
   if (rampsEl) ramps.forEach(function (rp) {
@@ -133,7 +180,32 @@
   document.addEventListener('click', function (e) {
     var s = e.target.closest('.swatch,.role');
     if (s && s.getAttribute('data-hex')) copyText(s.getAttribute('data-hex'), s);
+    var fn = e.target.closest('.logo-meta .fn');
+    if (fn && fn.getAttribute('data-file')) copyFile(fn.getAttribute('data-file'));
   });
+
+  function copyFile(name) {
+    // download the actual SVG asset rather than copying its name
+    var url = 'assets/' + name;
+    function trigger(href, revoke) {
+      var a = document.createElement('a');
+      a.href = href;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      if (revoke) setTimeout(function () { URL.revokeObjectURL(href); }, 1000);
+      showToast(name, 'download');
+    }
+    fetch(url).then(function (r) {
+      if (!r.ok) throw new Error('fetch failed');
+      return r.blob();
+    }).then(function (blob) {
+      trigger(URL.createObjectURL(blob), true);
+    }).catch(function () {
+      trigger(url, false); // fallback: direct link
+    });
+  }
 
   /* ---------- type scale ---------- */
   var sizes = [
@@ -191,4 +263,122 @@
     });
   }, { rootMargin: '-90px 0px -70% 0px' });
   document.querySelectorAll('section[id]').forEach(function (s) { obs.observe(s); });
+
+  /* ---------- nav search ---------- */
+  (function () {
+    var input = document.getElementById('searchInput');
+    var box = document.getElementById('searchResults');
+    if (!input || !box) return;
+
+    // keyword synonyms to widen matching beyond the visible title
+    var KW = {
+      overview: 'intro start design.md stitch tokens machine readable summary',
+      logo: 'brand mark wordmark icon doodle favicon avatar svg png download',
+      voice: 'tone writing copy style dials funny casual sass enthusiastic',
+      scannability: 'mobile readability words sentences bullets contrast',
+      color: 'colours palette hex swatch ramp primitive semantic role blue red navy gray green yellow',
+      type: 'typography font fonts typeface work sans rubik caveat weight scale heading body specimen',
+      spacing: 'space gap padding margin grid 4px rhythm',
+      radii: 'radius corners border width rounded',
+      shadows: 'shadow elevation depth focus ring',
+      buttons: 'button cta primary secondary text action',
+      accordion: 'accordion expand collapse faq disclosure',
+      dropdown: 'dropdown select menu field error',
+      chip: 'filter chip pill tag toggle',
+      label: 'label header badge tag status',
+      separator: 'separator divider rule line hr',
+      lists: 'list bullet pro con spec comparison',
+      callout: 'callout box card grid feature vertical',
+      source: 'design.md source raw yaml markdown agent lint download export'
+    };
+
+    // build index from sidenav anchors: title + group heading
+    var index = [];
+    var links = document.querySelectorAll('.sidenav a[href^="#"]');
+    links.forEach(function (a) {
+      var id = a.getAttribute('href').slice(1);
+      // nearest preceding .grp label
+      var group = 'Section', n = a.previousElementSibling;
+      while (n) { if (n.classList && n.classList.contains('grp')) { group = n.textContent; break; } n = n.previousElementSibling; }
+      index.push({ id: id, title: a.textContent.replace(/\s+/g, ' ').trim(), group: group, kw: KW[id] || '' });
+    });
+
+    var results = [], active = -1;
+
+    function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+    function highlight(title, q) {
+      if (!q) return title;
+      var re = new RegExp('(' + esc(q) + ')', 'ig');
+      return title.replace(re, '<mark>$1</mark>');
+    }
+
+    function render(q) {
+      box.innerHTML = '';
+      if (results.length === 0) {
+        box.innerHTML = '<div class="none">No match for <b>“' + q.replace(/</g, '&lt;') + '”</b>. Try “color”, “buttons”, or “font”.</div>';
+        box.classList.add('open'); input.setAttribute('aria-expanded', 'true');
+        return;
+      }
+      results.forEach(function (r, i) {
+        var b = document.createElement('button');
+        b.className = 'sr' + (i === active ? ' active' : '');
+        b.setAttribute('role', 'option');
+        b.dataset.id = r.id;
+        b.innerHTML = '<span class="t">' + highlight(r.title, q) + '</span><span class="g">' + r.group + '</span>';
+        b.addEventListener('mouseenter', function () { active = i; paintActive(); });
+        b.addEventListener('click', function () { go(r.id); });
+        box.appendChild(b);
+      });
+      box.classList.add('open'); input.setAttribute('aria-expanded', 'true');
+    }
+
+    function paintActive() {
+      var items = box.querySelectorAll('.sr');
+      items.forEach(function (el, i) { el.classList.toggle('active', i === active); });
+    }
+
+    function search(q) {
+      q = q.trim().toLowerCase();
+      if (!q) { close(); return; }
+      var scored = [];
+      index.forEach(function (r) {
+        var t = r.title.toLowerCase();
+        var s = -1;
+        if (t.indexOf(q) === 0) s = 0;            // title prefix — best
+        else if (t.indexOf(q) > -1) s = 1;        // title contains
+        else if (r.kw.indexOf(q) > -1) s = 2;     // keyword match
+        if (s > -1) scored.push({ r: r, s: s });
+      });
+      scored.sort(function (a, b) { return a.s - b.s; });
+      results = scored.map(function (x) { return x.r; });
+      active = results.length ? 0 : -1;
+      render(q);
+    }
+
+    function go(id) {
+      close();
+      input.value = '';
+      var el = document.getElementById(id);
+      if (el) {
+        history.replaceState(null, '', '#' + id);
+        window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 84, behavior: 'smooth' });
+        el.style.transition = 'none';
+      }
+      input.blur();
+    }
+
+    function close() { box.classList.remove('open'); input.setAttribute('aria-expanded', 'false'); }
+
+    input.addEventListener('input', function () { search(input.value); });
+    input.addEventListener('focus', function () { if (input.value.trim()) search(input.value); });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); if (results.length) { active = (active + 1) % results.length; paintActive(); } }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); if (results.length) { active = (active - 1 + results.length) % results.length; paintActive(); } }
+      else if (e.key === 'Enter') { e.preventDefault(); if (active > -1 && results[active]) go(results[active].id); }
+      else if (e.key === 'Escape') { close(); input.blur(); }
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('#navSearch')) close();
+    });
+  })();
 })();
