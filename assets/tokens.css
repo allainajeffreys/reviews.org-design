@@ -1,0 +1,113 @@
+/* ============================================================
+   Reviews.org — DESIGN.md token layer
+   Generated 1:1 from the YAML frontmatter of REV_DESIGN.md.
+   This file IS the bridge: edit the .md, mirror it here.
+   ============================================================ */
+
+:root {
+  /* ---- PRIMITIVES · brand blue ---- */
+  --blue-100:#EBF2FD; --blue-200:#DAE7FC; --blue-300:#BDD4F9; --blue-400:#8BB4F6;
+  --blue-500:#568EF5; --blue-600:#315FE7; --blue-700:#223EA2; --blue-800:#172469; --blue-900:#0C113C;
+
+  /* ---- PRIMITIVES · accent red ---- */
+  --ared-100:#FBEFEB; --ared-200:#F7DAD4; --ared-300:#EFB5A9; --ared-400:#E8917D;
+  --ared-500:#E06C52; --ared-600:#D84727; --ared-700:#AD391F; --ared-800:#822B17; --ared-900:#561C10;
+
+  /* ---- PRIMITIVES · gray ---- */
+  --gray-050:#F9F9FA; --gray-100:#F3F3F4; --gray-150:#E8E7E9; --gray-200:#DCDBDE;
+  --gray-250:#C5C3C8; --gray-300:#AEAAB1; --gray-350:#8B8690; --gray-400:#615E65;
+  --gray-450:#464348; --gray-500:#2A282B; --gray-550:#0E0D0E;
+
+  /* ---- PRIMITIVES · white ---- */
+  --white-1000:#FFFFFF;
+
+  /* ---- PRIMITIVES · red ---- */
+  --red-100:#FFF2F0; --red-200:#FFDCD8; --red-300:#FFA79D; --red-400:#FF7B70;
+  --red-500:#FD413D; --red-600:#E11420; --red-700:#BE0014; --red-800:#8D000C; --red-900:#5D0005;
+
+  /* ---- PRIMITIVES · green ---- */
+  --green-100:#E9FBF4; --green-200:#BDF2DD; --green-300:#91E9C6; --green-400:#64E0AF;
+  --green-500:#22D38C; --green-600:#1BA970; --green-700:#147F54; --green-800:#0E5438; --green-900:#072A1C;
+
+  /* ---- PRIMITIVES · yellow ---- */
+  --yellow-100:#FEF4E8; --yellow-200:#FEEFDD; --yellow-300:#FDDFBB; --yellow-400:#FBCA8E;
+  --yellow-500:#FEB24D; --yellow-600:#F7941D; --yellow-700:#C67617; --yellow-800:#7C4A0F; --yellow-900:#4A2C09;
+
+  /* ---- SEMANTIC · text ---- */
+  --text-heading:#0E0D0E;
+  --text-heading-on-dark:#FFFFFF;
+  --text-body:#464348;
+  --text-body-on-dark:#FFFFFF;
+  --text-body-alt:#615E65;
+  --text-body-alt-on-dark:rgba(255,255,255,0.95);
+  --text-muted:#8B8690;
+  --text-muted-on-dark:rgba(255,255,255,0.9);
+  --text-link:#D84727;
+  --text-link-hover:#822B17;
+  --text-link-on-dark:#EFB5A9;
+  --text-link-on-dark-hover:#E8917D;
+  --text-error:#E11420;
+  --text-error-on-dark:#FFDCD8;
+  --text-success:#1BA970;
+  --text-success-on-dark:#E9FBF4;
+
+  /* ---- SEMANTIC · background ---- */
+  --bg-default:#FFFFFF;
+  --bg-default-active:#EBF2FD;
+  --bg-default-hover:#BDD4F9;
+  --bg-brand:#0C113C;
+  --bg-brand-light:#DAE7FC;
+  --bg-brand-dark:#0C113C;
+  --bg-strong:#2A282B;
+  --bg-muted:#F9F9FA;
+  --bg-success:#1BA970;
+  --bg-error:#E11420;
+
+  /* ---- SEMANTIC · button ---- */
+  --btn-primary:#D84727;
+  --btn-primary-hover:#822B17;
+  --btn-primary-active:#561C10;
+  --btn-secondary:#FFFFFF;
+  --btn-secondary-hover:#FBEFEB;
+
+  /* ---- SEMANTIC · border ---- */
+  --border-default:#DCDBDE;
+  --border-default-active:#568EF5;
+  --border-brand:#0C113C;
+  --border-brand-light:#315FE7;
+  --border-brand-dark:#0C113C;
+  --border-muted:#E8E7E9;
+  --border-strong:#464348;
+  --border-success:#22D38C;
+  --border-error:#E11420;
+  --border-btn-secondary:#D84727;
+  --border-btn-secondary-hover:#AD391F;
+
+  /* ---- TYPOGRAPHY ---- */
+  --font-heading:"Work Sans", system-ui, sans-serif;
+  --font-body:"Rubik", system-ui, sans-serif;
+  --font-creative:"Caveat", cursive;
+  --w-regular:400; --w-medium:500; --w-semibold:600; --w-bold:700;
+
+  /* ---- RADIUS ---- */
+  --radius-none:0px;
+  --radius-inner:4px;
+  --radius-outer:10px;
+  --radius-outer-lg:16px;
+  --radius-full:384px;
+
+  /* ---- BORDER WIDTH ---- */
+  --bw-subtle:1px;
+  --bw-default:2px;
+  --bw-emphasis:4px;
+
+  /* ---- SHADOWS ---- */
+  --shadow-flat:none;
+  --shadow-low:0px -1px 2px rgba(0,0,0,0.04), 0px 2px 4px rgba(0,0,0,0.16);
+  --shadow-medium:0px -1px 4px rgba(0,0,0,0.04), 0px 4px 8px rgba(0,0,0,0.16);
+  --shadow-high:0px -1px 6px rgba(0,0,0,0.04), 0px 12px 24px rgba(0,0,0,0.24);
+  --shadow-xhigh:0px -1px 8px rgba(0,0,0,0.04), 0px 24px 32px rgba(0,0,0,0.56);
+
+  /* ---- EFFECT · focus ring ---- */
+  --focus-brand:-2px -2px 0 0 #D84727, 2px 2px 0 0 #D84727, -2px 2px 0 0 #D84727, 2px -2px 0 0 #D84727;
+}
